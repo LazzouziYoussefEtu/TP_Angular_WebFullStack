@@ -21,7 +21,7 @@ export class ProductService {
   private createProduct(id: string, title: string, price: string, images: string): Product {
     let p = new Product(id);
     p.productTitle = title;
-  p.productPrice = price;
+    p.productPrice = price;
     p.productImage = images;
     return p;
   }
