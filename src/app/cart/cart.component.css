@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    }
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    }
+img.product-image {
+    max-width: 100px;
+    height: auto;
+    }
+button.btn-remove {
+    background-color: #0000ff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    }
+button.btn-remove:hover {
+    background-color: #ff1a1a;
+    }

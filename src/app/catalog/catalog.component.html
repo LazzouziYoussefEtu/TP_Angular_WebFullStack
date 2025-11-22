@@ -1,0 +1,20 @@
+<h2>Catalogue Produits</h2>
+<!-- <div class="product-list">
+  <div *ngFor="let p of products" class="card">
+    <h3>{{ p.productTitle }}</h3>
+    <p>Prix: {{ p.prouctPrice }}</p>
+    <p>Ref: {{ p.productID }}</p>
+    <img [src]="p.imageUrl()" (alt)="p.productTitle" class="product-image"/>
+    
+    <button (click)="onAddToCart(p)">Ajouter au panier</button>
+  </div>
+</div> -->
+<table class="product-table">
+  <tr *ngFor="let p of products">
+    <td><img [src]="p.imageUrl()" (alt)="p.productTitle" class="product-image"/></td>
+    <td> <br>{{ p.productTitle }}
+    <br>{{ p.productPrice }}
+    <br>{{ p.productID }}</td>
+    <td><button (click)="onAddToCart(p)" class="btn-remove">Ajouter au panier</button></td>
+  </tr>
+</table>

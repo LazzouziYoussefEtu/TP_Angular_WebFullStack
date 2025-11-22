@@ -1,0 +1,33 @@
+<h2>Votre Panier</h2>
+
+<div *ngIf="cartItems.length === 0">
+  <p>Le panier est vide.</p>
+</div>
+<!-- 
+<ul>
+  <li *ngFor="let item of cartItems">
+    <strong>{{ item.itemProduct.productTitle }}</strong> 
+    - Quantité: {{ item.quantity }} 
+    - Prix Unit: {{ item.itemProduct.productPrice }}
+  </li>
+</ul>
+
+<div class="actions">
+    <button (click)="buy()" class="btn-buy">Acheter maintenant</button>
+    <button (click)="" class="btn-clear">Vider le panier</button>
+</div> -->
+
+<table *ngIf="cartItems.length > 0" class="cart-table">
+  <tr *ngFor="let item of cartItems">
+    <td><img [src]="item.itemProduct.imageUrl()" alt="{{ item.itemProduct.productTitle }}" class="product-image"></td>
+    <td>{{ item.itemProduct.productTitle }}</td>
+    <td>Quantité: {{ item.quantity }}</td>
+    <td>Prix Unit: {{ item.itemProduct.productPrice }}</td>
+    <td><button (click)="removeproductfromcart(item)" class="btn-remove">Retirer</button></td>
+  </tr>
+</table>
+
+<div *ngIf="cartItems.length > 0" class="actions">
+    <button (click)="buy()" class="btn-buy">Acheter maintenant</button>
+    <button (click)="clearCart()" class="btn-clear">Vider le panier</button>
+</div>
