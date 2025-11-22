@@ -1,27 +1,80 @@
-# TP4
+# TP Angular : Application E-Commerce
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+**Université Abdelmalek Essaâdi** **Faculté Polydisciplinaire - Larache** **Module :** Programmation Full Stack  
+**Professeur :** M. KOUISSI Mohamed  
+**Année Universitaire :** 2025/2026
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 📝 Description du TP
 
-## Code scaffolding
+Ce projet a été réalisé dans le cadre des travaux pratiques du module Angular. L'objectif était de créer une application de catalogue en ligne mettant en œuvre les concepts fondamentaux du framework vus en cours (Chapitres 4 à 9), notamment l'architecture orientée services et la communication entre composants.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🎯 Objectifs Réalisés
 
-## Build
+Conformément au cahier des charges, l'application intègre :
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1.  **Architecture MVC & Modèles (TypeScript)**
+    * Création des classes modèles strictes : `Product`, `User`, `ShoppingCart`, `ShoppingCartItem`.
+    * Encapsulation des données (Getters/Setters).
 
-## Running unit tests
+2.  **Composants (Components)**
+    * `CatalogComponent` : Affichage de la liste des produits (codés en dur dans le service).
+    * `CartComponent` : Gestion de l'affichage du panier et du total.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3.  **Services & Injection de Dépendances (DI)**
+    * Implémentation d'un `CartService` (Singleton) pour persister l'état du panier à travers l'application.
+    * Implémentation d'un `ProductService` pour centraliser la source de données des produits.
+    * Injection de ces services dans les constructeurs des composants.
 
-## Running end-to-end tests
+4.  **Data Binding & Directives**
+    * Utilisation de l'interpolation `{{ }}` et du Property Binding `[]` (ex: images).
+    * Utilisation des directives structurelles `*ngFor` (listes) et `*ngIf` (état du panier vide).
+    * Event Binding `(click)` pour l'ajout et la suppression d'articles.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+5.  **Gestion des Assets**
+    * Intégration des images produits stockées localement dans `src/assets/images`.
 
-## Further help
+## 🛠️ Structure du Projet
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+L'architecture respecte la séparation des responsabilités :
+
+```text
+src/app/
+├── models/              # Classes métiers (Logique pure)
+│   ├── Product.ts
+│   ├── ShoppingCart.ts
+│   └── ...
+├── services/            # Gestion des données (Fournisseurs)
+│   ├── product.service.ts
+│   └── cart.service.ts
+├── catalog/             # Vue Catalogue
+├── cart/                # Vue Panier
+└── app.routes.ts        # Configuration du routage
+````
+
+## 🚀 Instructions d'exécution
+
+1.  **Installation des dépendances** :
+
+    ```bash
+    npm install
+    ```
+
+2.  **Lancement du serveur** :
+
+    ```bash
+    ng serve
+    ```
+
+3.  **Utilisation** :
+
+      * Accédez à `http://localhost:4200`.
+      * Naviguez entre le Catalogue et le Panier via le menu.
+      * Ajoutez des produits et visualisez la mise à jour du panier en temps réel.
+
+## 👤 Étudiant
+
+  * **Nom / Prénom** : Lazzouzi Youssef
+  * **Filière** : Licence Développement Informatique et Méthodes DevOps
+
