@@ -1,22 +1,103 @@
-table {
-    width: 100%;
-    border-collapse: collapse;
-    }
-td, th {
+.catalog-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* --- Style des Filtres --- */
+.filters-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.search-input, .category-select {
+    padding: 10px;
     border: 1px solid #ddd;
-    padding: 8px;
-    }
-img.product-image {
-    max-width: 100px;
-    height: auto;
-    }
-button.btn-remove {
-    background-color: #0000ff;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.search-input { flex: 1; } /* Prend toute la largeur dispo */
+
+/* --- Style du Tableau --- */
+.table-responsive {
+    overflow-x: auto; /* Permet le scroll sur mobile */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse; /* Enlève l'espace entre les cellules */
+    background-color: white;
+}
+
+/* L'entête (Header) - Couleur verte style Excel/Admin */
+.product-table thead tr {
+    background-color: #009879; /* Vert canard */
+    color: #ffffff;
+    text-align: left;
+}
+
+.product-table th, .product-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dddddd;
+}
+
+/* Lignes zébrées (Optionnel, très joli) */
+.product-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+/* Effet au survol de la ligne */
+.product-table tbody tr:hover {
+    background-color: #f1f1f1;
+    font-weight: bold;
+    color: #009879;
+}
+
+/* --- Style des éléments internes --- */
+.thumb-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.product-name {
+    font-weight: 500;
+}
+
+.product-price {
+    font-weight: bold;
+    color: #333;
+}
+
+.category-badge {
+    background-color: #e2e6ea;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #495057;
+}
+
+.add-btn {
+    background-color: #008CBA;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 8px 12px;
+    border-radius: 4px;
     cursor: pointer;
-    }
-button.btn-remove:hover {
-    background-color: #ff1a1a;
-    }
+    transition: background 0.3s;
+}
+
+.add-btn:hover {
+    background-color: #005f7f;
+}

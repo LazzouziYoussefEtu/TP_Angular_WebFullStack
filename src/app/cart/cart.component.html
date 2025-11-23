@@ -1,8 +1,8 @@
-<h2>Votre Panier</h2>
+<!-- <h2>Votre Panier</h2>
 
 <div *ngIf="cartItems.length === 0">
   <p>Le panier est vide.</p>
-</div>
+</div> -->
 <!-- 
 <ul>
   <li *ngFor="let item of cartItems">
@@ -17,7 +17,7 @@
     <button (click)="" class="btn-clear">Vider le panier</button>
 </div> -->
 
-<table *ngIf="cartItems.length > 0" class="cart-table">
+<!-- <table *ngIf="cartItems.length > 0" class="cart-table">
   <tr *ngFor="let item of cartItems">
     <td><img [src]="item.itemProduct.imageUrl()" alt="{{ item.itemProduct.productTitle }}" class="product-image"></td>
     <td>{{ item.itemProduct.productTitle }}</td>
@@ -30,4 +30,55 @@
 <div *ngIf="cartItems.length > 0" class="actions">
     <button (click)="buy()" class="btn-buy">Acheter maintenant</button>
     <button (click)="clearCart()" class="btn-clear">Vider le panier</button>
+</div> -->
+
+<div class="cart-container">
+  <h2>Votre Panier 🛒</h2>
+
+  <div *ngIf="cartItems.length === 0" class="empty-cart-message">
+    <p>Votre panier est vide pour le moment.</p>
+    <a routerLink="/catalog" class="back-link">Retourner au catalogue</a>
+  </div>
+
+  <div *ngIf="cartItems.length > 0" class="table-responsive">
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Produit</th>
+          <th>Quantité</th>
+          <th>Prix Unitaire</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          
+          <td>
+            <img [src]="item.itemProduct.imageUrl()" [alt]="item.itemProduct.productTitle" class="thumb-img">
+          </td>
+          
+          <td class="product-name">{{ item.itemProduct.productTitle }}</td>
+          
+          <td style="font-weight: bold;">
+            x {{ item.quantity }}
+          </td>
+          
+          <td class="product-price">{{ item.itemProduct.productPrice }}</td>
+          
+          <td>
+            
+            <button (click)="removeproductfromcart(item)" class="delete-btn">
+              Retirer 🗑️
+            </button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cart-actions">
+        <button (click)="buy()" class="buy-btn">Confirmer la commande ✅</button>
+    </div>
+  </div>
 </div>
