@@ -7,11 +7,10 @@ import { ProductService } from '../services/product.service';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 
 @Component({
-  selector: 'app-catalog',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ProductDetailsComponent],
-  templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.css']
+    selector: 'app-catalog',
+    imports: [CommonModule, FormsModule, ProductDetailsComponent],
+    templateUrl: './catalog.component.html',
+    styleUrls: ['./catalog.component.css']
 })
 export class CatalogComponent implements OnInit {
 

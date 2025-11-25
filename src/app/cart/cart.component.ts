@@ -4,11 +4,10 @@ import { CartService } from '../services/cart.service';
 import { ShoppingCartItem } from '../models/ShoppingCartItem';
 
 @Component({
-  selector: 'app-cart',
-  standalone: true,
-  imports: [CommonModule], // <--- On l'ajoute ici aussi
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+    selector: 'app-cart',
+    imports: [CommonModule], // <--- On l'ajoute ici aussi
+    templateUrl: './cart.component.html',
+    styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
 

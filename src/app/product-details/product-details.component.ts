@@ -5,11 +5,10 @@ import { Product } from '../models/Product';
 import { CartService } from '../services/cart.service';
 
 @Component({
-  selector: 'app-product-details',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css']
+    selector: 'app-product-details',
+    imports: [CommonModule, FormsModule],
+    templateUrl: './product-details.component.html',
+    styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent {
   @Input() product: Product | null = null;
