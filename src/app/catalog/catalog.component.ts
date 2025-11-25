@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { Product } from '../models/Product';
 import { CartService } from '../services/cart.service';
@@ -8,7 +8,7 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
 
 @Component({
     selector: 'app-catalog',
-    imports: [CommonModule, FormsModule, ProductDetailsComponent],
+    imports: [FormsModule, ProductDetailsComponent],
     templateUrl: './catalog.component.html',
     styleUrls: ['./catalog.component.css']
 })

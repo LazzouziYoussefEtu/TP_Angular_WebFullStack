@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { Product } from '../models/Product';
 import { CartService } from '../services/cart.service';
 
 @Component({
     selector: 'app-product-details',
-    imports: [CommonModule, FormsModule],
+    imports: [FormsModule],
     templateUrl: './product-details.component.html',
     styleUrls: ['./product-details.component.css']
 })
