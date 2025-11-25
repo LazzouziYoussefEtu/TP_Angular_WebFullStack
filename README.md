@@ -9,7 +9,9 @@
 
 ## 📝 Description du Projet
 
-Application e-commerce complète développée en **Angular 17** avec une architecture modulaire, standalone components, et gestion avancée du panier avec interface intuitive.
+Application e-commerce complète développée en **Angular 21** (dernière version stable 2024-11) avec une architecture modulaire, standalone components, et gestion avancée du panier avec interface intuitive.
+
+**Dernière mise à jour :** Dépendances mises à jour vers les dernières versions stables (Angular 21, TypeScript 5.9, Node.js LTS compatible).
 
 ---
 
@@ -34,7 +36,7 @@ Application e-commerce complète développée en **Angular 17** avec une archite
 - **Quantités avec badges colorés** (un point couleur par unité)
 - **Contrôles de quantité** : boutons − et + pour ajuster directement
 - **Suppression d'articles** avec bouton "Retirer 🗑️"
-- **Actions panier** : "Vider le panier 🧹" et "Confirmer la commande ✅"
+- **Actions panier** : "Vider le panier ��" et "Confirmer la commande ✅"
 - **Message panier vide** avec lien retour au catalogue
 
 ### 🧭 Navigation
@@ -67,7 +69,7 @@ src/app/
 │   │   ├── cart.component.ts
 │   │   ├── cart.component.html
 │   │   └── cart.component.css
-│   ├── product-details/       # Modal modal
+│   ├── product-details/       # Modal pour détails produit
 │   │   ├── product-details.component.ts
 │   │   ├── product-details.component.html
 │   │   └── product-details.component.css
@@ -78,12 +80,42 @@ src/app/
 ```
 
 ### Technologies Utilisées
-- **Angular 17** avec Standalone Components
-- **TypeScript** strict
-- **RxJS** (services réactifs)
-- **Angular Router** pour la navigation
+- **Angular 21** (dernière version stable) avec Standalone Components et contrôle de flux par blocs
+- **TypeScript 5.9** strict avec ES2022 comme cible
+- **RxJS** pour services réactifs
+- **Angular Router** pour la navigation SPA
 - **Angular Forms** (ngModel) pour les entrées utilisateur
 - **CSS3** pour styling responsive
+- **Express.js 5.x** pour server-side rendering (SSR)
+- **zone.js 0.15** pour gestion des zones asynchrones
+- **Node.js 20 LTS** (recommandé) ou 24 LTS
+
+---
+
+## 📦 Dépendances Principales
+
+### Angular 21.x (2024-11 Latest)
+- @angular/core, @angular/common, @angular/router, @angular/forms
+- @angular/platform-browser, @angular/platform-browser-dynamic
+- @angular/platform-server (SSR)
+- @angular/ssr (Server-side rendering utilities)
+- @angular/animations
+
+### Développement & Build
+- @angular/cli 21.x (tooling)
+- @angular/compiler-cli 21.x (TypeScript compiler)
+- @angular/build 21.x (build system)
+- typescript 5.9.x (language)
+- zone.js 0.15.x (async handling)
+
+### Serveur
+- express 5.x (HTTP server, SSR)
+- @types/express 5.x (TypeScript types)
+- @types/node 24.x (Node.js types)
+
+### Testing
+- jasmine-core 5.12.x (test framework)
+- karma 6.4.x (test runner)
 
 ---
 
@@ -147,8 +179,9 @@ class ShoppingCart {
 ## 🚀 Installation & Démarrage
 
 ### Prérequis
-- Node.js 18+ et npm
-- Angular CLI 17+
+- **Node.js 20 LTS** (recommandé) ou 24 LTS (Node 25+ fonctionne mais n'est pas LTS)
+- **npm 10+** ou **yarn**
+- Angular CLI 21+
 
 ### Installation
 ```bash
@@ -160,94 +193,101 @@ cd TP4
 npm install
 ```
 
-### Lancer l'application
+### Lancer l'application (Mode développement)
 ```bash
 npm start
 ```
-L'app démarre sur **http://localhost:4200**
+L'app démarre sur **http://localhost:4200** avec hot-reload automatique.
 
 ### Build production
 ```bash
 npm run build
 ```
-Les fichiers générés sont dans `dist/tp4/`
+Les fichiers optimisés sont générés dans `dist/tp4/`.
+
+### Build avec Server-Side Rendering (SSR)
+```bash
+npm run build
+npm run serve:ssr:TP4
+```
+Lance le serveur SSR sur **http://localhost:4200**.
 
 ---
 
-## 🔄 Flux de Données
+## �� Flux de Données
 
-1. **ProductService** fournit 10 produits codés en dur
-2. **CatalogComponent** affiche les produits (search + filter)
-3. Clic produit → **ProductDetailsComponent** modal
-4. Sélectionner quantité → **"Ajouter au panier"**
-5. **CartService** (Singleton) persiste l'état global
-6. **CartComponent** affiche tous les articles avec quantités ajustables
-7. Boutons ± modifient les quantités en temps réel
+1. **ProductService** fournit 10 produits (liste statique)
+2. **CatalogComponent** affiche les produits avec filtrage et recherche
+3. Clic sur produit → **ProductDetailsComponent** modal avec overlay
+4. Utilisateur sélectionne quantité → **"Ajouter au panier"**
+5. **CartService** (Singleton) persiste l'état global du panier
+6. **CartComponent** affiche tous les articles avec:
+   - Badges de quantité colorés (point par unité)
+   - Boutons ± pour ajuster quantité en temps réel
+   - Bouton supprimer pour retirer un article
+7. Boutons d'action : "Vider panier" ou "Confirmer commande"
 
 ---
 
-## � Points Clés de Programmation
+## 📝 Points Clés de Programmation
 
-✅ **Architecture modulaire** avec Standalone Components  
+✅ **Angular 21 Standalone Components** (pas de NgModules)  
+✅ **Control Flow par blocs** (@if, @for, @switch au lieu de *ngIf, *ngFor)  
 ✅ **Injection de dépendances** (providedIn: 'root')  
-✅ **Data binding bidirectionnel** ([(ngModel)])  
-✅ **Directives** (*ngIf, *ngFor)  
+✅ **Data binding bidirectionnel** ([(ngModel]])  
 ✅ **Event binding** ((click), (change))  
 ✅ **Property binding** ([value], [style], [class])  
-✅ **Routing** entre pages  
+✅ **Routing** avec Router et Routes  
 ✅ **Gestion d'état** avec service Singleton  
 ✅ **Composants imbriqués** avec @Input/@Output  
-✅ **Styling dynamique** avec [ngStyle] et [ngClass]
+✅ **Styling dynamique** avec [ngStyle] et [ngClass]  
 
 ---
 
 ## 📝 Notes de Développement
 
 - Les descriptions produits utilisent `\n` pour les retours à la ligne
-- CSS `white-space: pre-wrap` préserve les sauts de ligne
+- CSS `white-space: pre-wrap` préserve les sauts de ligne dans les descriptions
 - Les badges de quantité boucle une palette de 7 couleurs
 - Le panier persiste tant que la page reste ouverte (Singleton CartService)
 - Navigation responsive avec flexbox et média queries
+- Migration Angular 18 → 21 : blocs de contrôle remplacent les directives structurelles
+- TypeScript 5.9 avec ES2022 comme cible (support des APIs modernes)
+- SSR configuré avec Express 5.x et @angular/ssr
+
+---
+
+## 🔧 Historique des Mises à Jour
+
+### v2.0 (2024-11-25) - Upgrade Dépendances
+- ✅ Angular 18 → 21 via migrations officielles (18→19→20→21)
+- ✅ TypeScript 5.4 → 5.9 (ES2022)
+- ✅ zone.js 0.14 → 0.15
+- ✅ express 4.21 → 5.x
+- ✅ @types/node 18 → 24
+- ✅ Conversion au contrôle de flux par blocs (@if, @for)
+- ✅ Mise à jour du serveur SSR (provideServerRendering → @angular/ssr)
+- ✅ Tous les packages aux dernières versions stables
+- ✅ Build et tests fonctionnels
+
+### v1.0 (2024-11-24) - Release Initial
+- Architecture e-commerce complète
+- 10 produits avec catégories et descriptions multi-lignes
+- Modal détails produit avec quantité ajustable
+- Panier avec badges colorés et boutons ± quantité
+- Navigation topbar sticky
+- Responsive design complet
 
 ---
 
 ## 👨‍💻 Auteur
 
 **Youssef Lazzouzi**  
-Étudiant - Faculté Polydisciplinaire de Larache
+Étudiant - Faculté Polydisciplinaire de Larache  
+Filière : Licence Développement Informatique et Méthodes DevOps
 
 ---
 
 ## 📄 Licence
 
 Ce projet est un travail académique pour le module de Programmation Full Stack.
-├── catalog/             # Vue Catalogue
-├── cart/                # Vue Panier
-└── app.routes.ts        # Configuration du routage
-````
-
-## 🚀 Instructions d'exécution
-
-1.  **Installation des dépendances** :
-
-    ```bash
-    npm install
-    ```
-
-2.  **Lancement du serveur** :
-
-    ```bash
-    ng serve
-    ```
-
-3.  **Utilisation** :
-
-      * Accédez à `http://localhost:4200`.
-      * Naviguez entre le Catalogue et le Panier via le menu.
-      * Ajoutez des produits et visualisez la mise à jour du panier en temps réel.
-
-## 👤 Étudiant
-
-  * **Nom / Prénom** : Lazzouzi Youssef
-  * **Filière** : Licence Développement Informatique et Méthodes DevOps
-
