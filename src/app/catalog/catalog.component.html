@@ -44,7 +44,6 @@
           <th>Nom du produit</th>
           <th>Catégorie</th>
           <th>Prix</th>
-          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -63,17 +62,11 @@
           </td>
           
           <td class="product-price">{{ p.productPrice }}</td>
-          
-          <td>
-            <button (click)="onAddToCart(p)" class="add-btn">
-              Ajouter 🛒
-            </button>
-          </td>
 
         </tr>
 
         <tr *ngIf="filteredProducts.length === 0">
-          <td colspan="5" style="text-align: center; padding: 20px;">
+          <td colspan="4" style="text-align: center; padding: 20px;">
             Aucun produit trouvé.
           </td>
         </tr>

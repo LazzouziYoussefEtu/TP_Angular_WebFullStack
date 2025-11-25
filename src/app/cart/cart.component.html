@@ -65,6 +65,11 @@
               <span *ngFor="let i of range(item.quantity)" class="qty-dot" [style.backgroundColor]="getColor(i)" [title]="'Unit ' + (i+1)"></span>
               <span class="qty-label">x {{ item.quantity }}</span>
             </div>
+            <div class="qty-adjust">
+              <button (click)="decrementQuantity(item)" class="qty-btn">−</button>
+              <span class="qty-display">{{ item.quantity }}</span>
+              <button (click)="incrementQuantity(item)" class="qty-btn">+</button>
+            </div>
           </td>
           
           <td class="product-price">{{ item.itemProduct.productPrice }}</td>

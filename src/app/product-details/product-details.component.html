@@ -16,7 +16,17 @@
     </div>
 
     <div class="bottom-bar">
-      <div class="qty">Quantité: 1</div>
+      <div class="qty-controls">
+        <label for="qty-input">Quantité:</label>
+        <input 
+          id="qty-input"
+          type="number" 
+          [(ngModel)]="quantity" 
+          [min]="1"
+          [max]="999"
+          class="qty-input"
+        />
+      </div>
       <button class="add" (click)="addToCart()">Ajouter au panier</button>
     </div>
   </div>
