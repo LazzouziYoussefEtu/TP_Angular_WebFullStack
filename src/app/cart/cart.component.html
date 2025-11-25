@@ -61,7 +61,10 @@
           <td class="product-name">{{ item.itemProduct.productTitle }}</td>
           
           <td style="font-weight: bold;">
-            x {{ item.quantity }}
+            <div class="qty-badges">
+              <span *ngFor="let i of range(item.quantity)" class="qty-dot" [style.backgroundColor]="getColor(i)" [title]="'Unit ' + (i+1)"></span>
+              <span class="qty-label">x {{ item.quantity }}</span>
+            </div>
           </td>
           
           <td class="product-price">{{ item.itemProduct.productPrice }}</td>
@@ -78,7 +81,10 @@
     </table>
 
     <div class="cart-actions">
+        <div *ngIf="cartItems.length > 1">
+        <button (click)="clearCart()" class="clear-btn">Vider le panier 🧹</button></div>
         <button (click)="buy()" class="buy-btn">Confirmer la commande ✅</button>
+
     </div>
   </div>
 </div>

@@ -20,6 +20,18 @@ export class CartComponent implements OnInit {
 
   constructor(private cartService: CartService) { }
 
+  // A small palette to cycle through for quantity badges
+  public qtyColors: string[] = ['#28a745', '#007bff', '#ffc107', '#fd7e14', '#6f42c1', '#20c997', '#e83e8c'];
+
+  // Helper to build an array [0..n-1] for *ngFor
+  range(n: number): number[] {
+    return Array.from({ length: Math.max(0, n) }, (_, i) => i);
+  }
+
+  getColor(index: number): string {
+    return this.qtyColors[index % this.qtyColors.length];
+  }
+
   ngOnInit(): void { }
 
   buy() {

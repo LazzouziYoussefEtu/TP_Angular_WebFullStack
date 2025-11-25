@@ -22,6 +22,7 @@ export class CartService {
     const item = new ShoppingCartItem(product);
     this.cart.addItem(item);
     console.log("Produit ajouté via le service :", product.productTitle);
+    alert(`${product.productTitle} a été ajouté au panier !`);
   }
 
   getCartItems() {

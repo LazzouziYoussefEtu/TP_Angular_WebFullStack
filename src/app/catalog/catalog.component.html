@@ -54,7 +54,9 @@
             <img [src]="p.imageUrl()" [alt]="p.productTitle" class="thumb-img">
           </td>
           
-          <td class="product-name">{{ p.productTitle }}</td>
+          <td class="product-name" (click)="openProductDetails(p)" style="cursor: pointer;">
+            {{ p.productTitle }}
+          </td>
           
           <td>
             <span class="category-badge">{{ p.category }}</span>
@@ -79,3 +81,10 @@
     </table>
   </div>
 </div>
+
+<!-- Product details modal -->
+<app-product-details
+  *ngIf="selectedProduct"
+  [product]="selectedProduct"
+  (close)="closeProductDetails()">
+</app-product-details>
