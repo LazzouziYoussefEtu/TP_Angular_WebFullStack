@@ -1,3 +1,6 @@
+/**
+ * Unit tests for UserService
+ */
 import { TestBed } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
 

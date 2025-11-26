@@ -1,3 +1,6 @@
+/**
+ * Unit tests for ProductService
+ */
 import { TestBed } from '@angular/core/testing';
 
 import { ProductService } from './product.service';

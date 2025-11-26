@@ -1,3 +1,6 @@
+/**
+ * Unit tests for Users component
+ */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Users } from './users';

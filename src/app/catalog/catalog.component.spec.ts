@@ -1,3 +1,6 @@
+/**
+ * Unit tests for CatalogComponent
+ */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CatalogComponent } from './catalog.component';
