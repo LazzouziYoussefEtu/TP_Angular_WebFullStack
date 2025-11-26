@@ -1,117 +1,98 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { UserService } from './user.service';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { delay, tap } from 'rxjs/operators';
 import { User } from '../models/User';
 
 /**
  * LoginService
  * Centralized authentication service handling sign-in, sign-up, and sign-out logic.
+ * Rewritten to use Observables and manage internal state.
  */
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private authMessageSubject = new BehaviorSubject<string | null>(null);
-  public authMessage$ = this.authMessageSubject.asObservable();
+  
+  // State: Who is currently logged in?
+  private currentUserSubject = new BehaviorSubject<User | null>(null);
+  public currentUser$ = this.currentUserSubject.asObservable();
 
-  constructor(private userService: UserService, private router: Router) {}
+  // Mock Database: Internal list of users
+  private users: User[] = [
+    { userId: 'u1', email: 'test@example.com', firstName: 'Test' } as any
+  ];
+
+  constructor() {}
 
   /**
-   * Sign in user with provided ID
-   * @param userId The ID of the user to sign in
-   * @returns True if sign in successful, false otherwise
+   * Sign in user with email (Simulating API call)
+   * @param email The email to sign in with
+   * @returns Observable of the User if found, or throws error
    */
-  signIn(userId: string): boolean {
-    const user = this.userService.getUser(userId);
+  signIn(email: string): Observable<User> {
+    const user = this.users.find(u => u.email === email);
+
     if (!user) {
-      this.authMessageSubject.next('User not found.');
-      return false;
+      return throwError(() => new Error('User not found.'));
     }
 
-    this.userService.signIn(userId);
-    this.authMessageSubject.next('Signed in successfully!');
-
-    // Navigate to home after delay
-    setTimeout(() => {
-      this.router.navigate(['/home']);
-      this.clearMessage();
-    }, 1000);
-
-    return true;
+    // Simulate network delay
+    return of(user).pipe(
+      delay(500),
+      tap(u => {
+        this.currentUserSubject.next(u); // Update state
+        console.log('Signed in successfully:', u.firstName);
+      })
+    );
   }
 
   /**
-   * Register a new user with provided details
-   * @param firstName User's first name
-   * @param lastName User's last name
-   * @param email User's email
-   * @param password User's password (not stored, for demo purposes)
-   * @returns True if registration successful, false otherwise
+   * Register a new user
+   * @returns Observable of the newly created User
    */
-  register(firstName: string, lastName: string, email: string, password: string): boolean {
-    // Validate all fields are provided
-    if (!firstName || !lastName || !email || !password) {
-      this.authMessageSubject.next('Please fill in all fields.');
-      return false;
+  register(firstName: string, lastName: string, email: string): Observable<User> {
+    // 1. Validation
+    if (!firstName || !email) {
+      return throwError(() => new Error('Please fill in all fields.'));
     }
 
-    // Check if email already exists (simple validation)
-    const existingUser = this.userService.getUsers().find(u => u.firstName === firstName && u.lastName === lastName);
+    // 2. Check duplicates
+    const existingUser = this.users.find(u => u.email === email);
     if (existingUser) {
-      this.authMessageSubject.next('User with this name already exists.');
-      return false;
+      return throwError(() => new Error('User with this email already exists.'));
     }
 
-    // Create and add new user
-    const newUserId = 'U' + Math.random().toString(36).substr(2, 9).toUpperCase();
-    const newUser = new User(newUserId);
-    newUser.firstName = firstName;
-    newUser.lastName = lastName;
+    // 3. Create User
+    const newUser: User = {
+      userId: 'u' + Date.now(),
+      email: email,
+      firstName: firstName,
+      // lastName can be added to User model if needed
+    } as any;
 
-    this.userService.addUser(newUser);
-    this.userService.signIn(newUserId);
-    this.authMessageSubject.next('Registered and signed in successfully!');
-
-    // Navigate to home after delay
-    setTimeout(() => {
-      this.router.navigate(['/home']);
-      this.clearMessage();
-    }, 1000);
-
-    return true;
+    // 4. Save and Login
+    this.users.push(newUser);
+    
+    return of(newUser).pipe(
+      delay(500),
+      tap(u => {
+        this.currentUserSubject.next(u); // Auto-login after register
+        console.log('Registered successfully:', u.firstName);
+      })
+    );
   }
 
   /**
    * Sign out the current user
    */
   signOut(): void {
-    this.userService.signOut();
-    this.authMessageSubject.next('Signed out successfully.');
-    this.router.navigate(['/home']);
-    setTimeout(() => this.clearMessage(), 1500);
+    this.currentUserSubject.next(null);
   }
 
   /**
-   * Get current logged-in user
-   * @returns Observable of current user
+   * Get current logged-in user value (Snapshot)
    */
-  getCurrentUser(): Observable<User | null> {
-    return this.userService.getCurrentUser();
-  }
-
-  /**
-   * Clear authentication message
-   */
-  clearMessage(): void {
-    this.authMessageSubject.next(null);
-  }
-
-  /**
-   * Get all available users (for sign-in selection)
-   * @returns Array of all users
-   */
-  getAvailableUsers(): User[] {
-    return this.userService.getUsers();
+  getCurrentUserValue(): User | null {
+    return this.currentUserSubject.value;
   }
 }

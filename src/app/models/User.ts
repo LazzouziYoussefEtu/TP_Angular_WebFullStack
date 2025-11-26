@@ -4,14 +4,20 @@
  */
 export class User {
     // readonly permet d’empêcher les assignations en dehors du constructeur.
-    private _firstName : String = "";
-    public get firstName(): String {
+    private _firstName? : String | undefined= "";
+    public get firstName(): String | undefined{
         return this._firstName;
     }
-    public set firstName(value: String) {
+    public set firstName(value: String | undefined) {
         this._firstName = value;
     }
-
+    private _email?: string | undefined;
+    public get email(): string | undefined {
+        return this._email;
+    }
+    public set email (value : string | undefined) {
+        this._email = value;
+    }
     private _lastName?: String | undefined = "";
     public get lastName(): String | undefined {
         return this._lastName;
