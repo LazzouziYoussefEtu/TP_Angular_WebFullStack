@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/User';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -33,10 +34,31 @@ export class UserService {
     return user;
   }
 
-  // Get all users
-  public getUsers(): User[] {
-    return this.users;
-  }
+// Get all users
+public getUsers(): Observable<User[]> {
+    return of(this.users);
+}
+
+// Current authenticated user management
+private currentUserSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(this.users.length ? this.users[0] : null);
+public currentUser$ = this.currentUserSubject.asObservable();
+
+/** Returns the current user as an observable */
+public getCurrentUser(): Observable<User | null> {
+  return this.currentUser$;
+}
+
+/** Sign the current user out (sets current user to null) */
+public signOut(): void {
+  this.currentUserSubject.next(null);
+}
+
+/** Sign in by userId (if found) */
+public signIn(userId: string): void {
+  const user = this.getUserById(userId) ?? null;
+  this.currentUserSubject.next(user);
+}
+
 
   // Get user by ID
   public getUserById(userId: string): User | undefined {

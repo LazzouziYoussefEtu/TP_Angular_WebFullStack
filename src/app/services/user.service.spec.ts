@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
+import { firstValueFrom } from 'rxjs';
 
 import { UserService } from './user.service';
+import { User } from '../models/User';
 
 describe('UserService', () => {
   let service: UserService;
@@ -14,8 +16,8 @@ describe('UserService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return all users', () => {
-    const users = service.getUsers();
+  it('should return all users', async () => {
+    const users = await firstValueFrom(service.getUsers());
     expect(users.length).toBe(10);
   });
 
@@ -24,17 +26,21 @@ describe('UserService', () => {
     expect(user?.firstName).toBe('John');
   });
 
-  it('should add new user', () => {
-    const initialCount = service.getUsers().length;
-    const newUser = new (require('../models/User').User)('U011');
+  it('should add new user', async () => {
+    const usersBefore = await firstValueFrom(service.getUsers());
+    const initialCount = usersBefore.length;
+    const newUser = new User('U011');
     service.addUser(newUser);
-    expect(service.getUsers().length).toBe(initialCount + 1);
+    const usersAfter = await firstValueFrom(service.getUsers());
+    expect(usersAfter.length).toBe(initialCount + 1);
   });
 
-  it('should remove user by ID', () => {
-    const initialCount = service.getUsers().length;
+  it('should remove user by ID', async () => {
+    const usersBefore = await firstValueFrom(service.getUsers());
+    const initialCount = usersBefore.length;
     service.removeUser('U001');
-    expect(service.getUsers().length).toBe(initialCount - 1);
+    const usersAfter = await firstValueFrom(service.getUsers());
+    expect(usersAfter.length).toBe(initialCount - 1);
   });
 
   it('should get users by type', () => {
