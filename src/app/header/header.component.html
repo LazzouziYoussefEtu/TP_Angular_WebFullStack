@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="left">
+      <img class="logo" src="/assets/images/logo.png" alt="Logo" />
+      <nav class="nav-links">
+        <a routerLink="/home" routerLinkActive="active">Home</a>
+        <a routerLink="/catalog" routerLinkActive="active">Catalog</a>
+        <a routerLink="/cart" routerLinkActive="active" class="cart">Cart <span class="cartCount">0</span></a>
+      </nav>
+    </div>
+
+    <div class="right">
+      <ng-container *ngIf="!user">
+        <a routerLink="/signin" routerLinkActive="active">Sign In</a>
+        <a href="#" class="cta">Register</a>
+      </ng-container>
+
+      <ng-container *ngIf="user">
+        <img class="profile-img" src="/assets/images/profil.png" (click)="toggleSignOutMenu()" alt="profile" />
+        <div class="sign-out" *ngIf="showSignOutMenu">
+          <button (click)="signOut()">Sign Out</button>
+        </div>
+      </ng-container>
+    </div>
+  </div>

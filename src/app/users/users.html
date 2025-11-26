@@ -1,0 +1,24 @@
+<h1>User Management</h1>
+<div>
+
+    <label for="addUser">Add User : </label>
+    <input type="text" id="addUser" [(ngModel)]="currentUser" (keyup.enter)="addUserAction()">
+    <button (click)="addUserAction()">Add</button>
+</div>
+
+<br>
+<div>
+    <label for="deleteUser">Delete Last User  : </label>
+    <button (click)="deleteLastUserAction()">Delete</button>
+</div>
+<h1>Users List</h1>
+<br >
+<div>
+    <table>
+        <tr *ngFor="let user of users; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ user }}</td>
+            <td><button (click)="deleteUserByName(user)">Delete</button></td>
+        </tr>
+    </table>
+</div>

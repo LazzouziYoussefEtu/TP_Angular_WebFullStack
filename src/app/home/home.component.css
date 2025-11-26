@@ -1,0 +1,25 @@
+.home-container {
+  max-width: 900px;
+  margin: 48px auto;
+  padding: 24px;
+  text-align: center;
+}
+
+.home-container h1 {
+  color: #009879;
+  margin-bottom: 12px;
+}
+
+.home-container p {
+  color: #444;
+  margin-bottom: 18px;
+}
+
+.cta {
+  display: inline-block;
+  background: #009879;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+}
