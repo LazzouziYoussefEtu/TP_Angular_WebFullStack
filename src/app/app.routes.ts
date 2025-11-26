@@ -7,13 +7,12 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { SigninComponent } from './signin/signin.component';
-import { RegisterComponent } from './register/register.component';
+
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'catalog', component: CatalogComponent },
     { path: 'cart', component: CartComponent },
     { path: 'signin', component: SigninComponent },
-    { path: 'register', component: RegisterComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
