@@ -1,5 +1,9 @@
 import { Product } from "./Product"
 
+/**
+ * ShoppingCartItem
+ * Represents an item entry inside the shopping cart with a product reference and quantity.
+ */
 export class ShoppingCartItem {
     public get quantity(): number { return this._quantity }
     public set quantity(value: number) { this._quantity = value }

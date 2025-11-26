@@ -1,3 +1,7 @@
+/**
+ * User model
+ * Represents an application user and exposes simple getters/setters used by the UI.
+ */
 export class User {
     // readonly permet d’empêcher les assignations en dehors du constructeur.
     private _firstName : String = "";

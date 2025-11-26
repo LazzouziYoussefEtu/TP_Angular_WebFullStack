@@ -10,4 +10,8 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  /**
+   * HomeComponent
+   * Simple landing page component displayed at the application root.
+   */
 }

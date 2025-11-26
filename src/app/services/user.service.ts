@@ -7,6 +7,11 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 })
 export class UserService {
 
+  /**
+   * UserService
+   * Manages an in-memory list of users and exposes the currently authenticated user as an observable.
+   */
+
   // Centralized list of users
   // In a real app, this list would come from a database.
   private users: User[] = [

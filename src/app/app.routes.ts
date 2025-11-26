@@ -1,4 +1,8 @@
 import { Routes } from '@angular/router';
+/**
+ * Application routes
+ * Central route configuration for the standalone routed components.
+ */
 import { CatalogComponent } from './catalog/catalog.component';
 import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';

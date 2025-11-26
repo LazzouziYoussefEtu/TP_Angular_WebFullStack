@@ -13,6 +13,10 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
     styleUrls: ['./catalog.component.css']
 })
 export class CatalogComponent implements OnInit {
+  /**
+   * CatalogComponent
+   * Displays the product list, supports searching and category filtering and opens the details modal.
+   */
 
   products: Product[] = [];
   filteredProducts: Product[] = [];

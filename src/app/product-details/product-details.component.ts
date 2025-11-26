@@ -11,6 +11,10 @@ import { CartService } from '../services/cart.service';
     styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent {
+  /**
+   * ProductDetailsComponent
+   * Shows a product modal allowing the user to choose a quantity and add items to the cart.
+   */
   @Input() product: Product | null = null;
   @Output() close = new EventEmitter<void>();
 

@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/Product';
 
+/**
+ * ProductService
+ * Provides an in-memory list of products for the catalog and a simple API to retrieve them.
+ */
 @Injectable({
   providedIn: 'root'
 })

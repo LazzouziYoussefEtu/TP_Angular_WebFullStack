@@ -1,5 +1,9 @@
 import { ShoppingCartItem } from "./ShoppingCartItem";
 
+/**
+ * ShoppingCart model
+ * Holds a collection of ShoppingCartItem entries and helper methods to compute totals.
+ */
 export class ShoppingCart {
     clearCart() {
       this.itemsProduct = [];

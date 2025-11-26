@@ -4,6 +4,10 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 
+/**
+ * Application bootstrap configuration
+ * Provides router and client hydration for the standalone bootstrap process.
+ */
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideClientHydration()]
 };

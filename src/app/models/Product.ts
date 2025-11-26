@@ -1,3 +1,7 @@
+/**
+ * Product model
+ * Represents a product in the catalog with basic fields used by components and services.
+ */
 export class Product {
     private _productTitle!: String;
 
