@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
+/**
+ * SigninComponent
+ * Modal form for user sign-in with email and password.
+ */
 @Component({
   selector: 'app-signin',
   standalone: true,
@@ -15,9 +20,14 @@ export class SigninComponent {
   password: string = '';
   message: string | null = null;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
-  // Simulated sign-in: signs in the first user if credentials are non-empty
+  /** Close the modal and navigate back */
+  close() {
+    this.router.navigate(['/home']);
+  }
+
+  /** Simulated sign-in: signs in the first user if credentials are non-empty */
   signIn() {
     if (!this.email || !this.password) {
       this.message = 'Please enter email and password.';
@@ -30,6 +40,7 @@ export class SigninComponent {
       if (user) {
         this.userService.signIn(user.userId as unknown as string);
         this.message = 'Signed in successfully.';
+        setTimeout(() => this.router.navigate(['/home']), 1000);
       } else {
         this.message = 'No user found to sign in.';
       }

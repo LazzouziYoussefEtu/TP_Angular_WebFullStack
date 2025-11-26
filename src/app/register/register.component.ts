@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 /**
  * RegisterComponent
- * Standalone form component allowing new user registration.
+ * Standalone form component allowing new user registration as a modal.
  */
 @Component({
   selector: 'app-register',
@@ -21,7 +22,12 @@ export class RegisterComponent {
   password: string = '';
   message: string | null = null;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
+
+  /** Close the modal and navigate back */
+  close() {
+    this.router.navigate(['/home']);
+  }
 
   /** Register a new user with provided details */
   register() {
@@ -40,10 +46,13 @@ export class RegisterComponent {
     this.userService.signIn(newUserId);
     this.message = 'Registered and signed in successfully!';
 
-    // Clear form
-    this.firstName = '';
-    this.lastName = '';
-    this.email = '';
-    this.password = '';
+    // Clear form and navigate after delay
+    setTimeout(() => {
+      this.firstName = '';
+      this.lastName = '';
+      this.email = '';
+      this.password = '';
+      this.router.navigate(['/home']);
+    }, 1000);
   }
 }

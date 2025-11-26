@@ -1,14 +1,72 @@
-.signin-container {
-  max-width: 420px;
-  margin: 36px auto;
-  padding: 18px;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  background: white;
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
-.signin-container h2 { color: #009879; margin-bottom: 12px; }
-.signin-container label { display: block; margin-bottom: 8px; font-weight: 600; }
-.signin-container input { width: 100%; padding: 8px; margin-top: 4px; box-sizing: border-box; }
-.signin-container button { background: #009879; color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
-.message { margin-top: 12px; color: #333; }
+.modal {
+  position: relative;
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.close:hover { color: #009879; }
+
+.body {
+  padding: 24px;
+}
+
+.body h2 { color: #009879; margin-bottom: 16px; }
+.body label { display: block; margin-bottom: 12px; font-weight: 600; }
+.body input { width: 100%; padding: 8px; margin-top: 4px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 4px; }
+
+.bottom-bar {
+  padding: 12px 24px;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 8px;
+}
+
+.submit {
+  background: #009879;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.submit:hover { background: #007a63; }
+
+.message { margin: 8px 24px 12px; color: #333; font-size: 14px; }
+
