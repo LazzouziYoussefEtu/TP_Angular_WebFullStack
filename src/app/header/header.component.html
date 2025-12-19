@@ -15,7 +15,7 @@
       </ng-container>
 
       <ng-container *ngIf="user">
-        <img class="profile-img" src="/assets/images/profil.png" (click)="toggleSignOutMenu()" alt="profile" />
+        <img class="profile-img" src="/assets/icons/user-icon.svg" (click)="toggleSignOutMenu()" alt="profile" />
         <div class="sign-out" *ngIf="showSignOutMenu">
           <button (click)="signOut()">Sign Out</button>
         </div>

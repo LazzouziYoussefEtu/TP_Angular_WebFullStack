@@ -77,6 +77,16 @@
   cursor: pointer;
 }
 
+/* Styling for the new user icon */
+.profile-img[src$=".svg"] {
+  height: 40px;
+  width: 40px;
+  border-radius: 0; /* SVGs might not need border-radius, or can be styled differently */
+  cursor: pointer;
+  padding: 5px; /* Adjust as needed */
+  background-color: #f0f0f0; /* Example background */
+}
+
 .sign-out {
   position: absolute;
   right: 16px;

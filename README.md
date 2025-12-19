@@ -189,15 +189,45 @@ class ShoppingCart {
 git clone <repo-url>
 cd TP4
 
-# Installer les dépendances
+# Installer les dépendances du projet principal
 npm install
+
+# Naviguer vers le répertoire de l'API et installer ses dépendances
+cd api-server
+npm install
+cd ..
 ```
 
 ### Lancer l'application (Mode développement)
+
+Pour que l'application fonctionne correctement, le serveur API doit être démarré en premier.
+
 ```bash
+# Démarrer le serveur API (dans un terminal séparé)
+node api-server/index.js
+```
+
+Ensuite, dans un autre terminal, lancez l'application Angular :
+
+```bash
+# Lancer l'application Angular
 npm start
 ```
 L'app démarre sur **http://localhost:4200** avec hot-reload automatique.
+
+### 🔑 Fonctionnalité de Connexion (Sign In)
+
+Une fonctionnalité de connexion a été implémentée pour l'application. Vous pouvez tester cette fonctionnalité en utilisant les identifiants suivants :
+
+*   **Email :** `youssef.lazzouzi@etu.uae.ac.ma`
+*   **Mot de passe :** `password123`
+
+Ou :
+
+*   **Email :** `test@test.com`
+*   **Mot de passe :** `password`
+
+Après la connexion, une icône d'utilisateur apparaîtra dans l'en-tête, vous permettant de vous déconnecter.
 
 ### Build production
 ```bash
