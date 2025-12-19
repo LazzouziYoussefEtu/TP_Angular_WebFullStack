@@ -36,7 +36,7 @@ Application e-commerce complète développée en **Angular 21** (dernière versi
 - **Quantités avec badges colorés** (un point couleur par unité)
 - **Contrôles de quantité** : boutons − et + pour ajuster directement
 - **Suppression d'articles** avec bouton "Retirer 🗑️"
-- **Actions panier** : "Vider le panier ��" et "Confirmer la commande ✅"
+- **Actions panier** : "Vider le panier " et "Confirmer la commande ✅"
 - **Message panier vide** avec lien retour au catalogue
 
 ### 🧭 Navigation
@@ -73,7 +73,7 @@ src/app/
 │   │   ├── product-details.component.ts
 │   │   ├── product-details.component.html
 │   │   └── product-details.component.css
-│   └── app.component.*        # Composant racine
+│   └── app.component.*
 │
 ├── app.routes.ts              # Routage (Catalog ↔ Cart)
 └── assets/images/             # Images produits
@@ -130,7 +130,7 @@ class Product {
   productPrice: string        // Prix (ex: "2334 DH")
   productImage: string        // Chemin relatif image
   category: string            // Catégorie
-  productDescription: string  // Description multi-ligne
+  productDescription: string  // Description multi-lignes
 }
 ```
 
@@ -148,9 +148,9 @@ class ShoppingCartItem {
 ```typescript
 class ShoppingCart {
   cartItems: ShoppingCartItem[]  // Liste d'articles dans le panier
-  addItem()                         // Ajoute un article
-  removeItem()                      // Retire un article
-  clearCart()                       // Vide le panier
+  addItem()                         # Ajoute un article
+  removeItem()                      # Retire un article
+  clearCart()                       # Vide le panier
 }
 ```
 
@@ -244,7 +244,37 @@ Lance le serveur SSR sur **http://localhost:4200**.
 
 ---
 
-## �� Flux de Données
+## 📸 Screenshots
+
+Voici quelques captures d'écran de l'application pour illustrer les différentes fonctionnalités et l'interface utilisateur.
+
+### Home Page
+![Home Page](screenshots/homePage.png)
+_Capture d'écran de la page d'accueil de l'application, affichant la barre de navigation, le catalogue de produits et les fonctionnalités de recherche/filtrage._
+
+### Signin Page
+![Signin Page](screenshots/SigninPage.png)
+_Capture d'écran de la page de connexion._
+
+### Catalog Page
+![Catalog Page](screenshots/catalogPage.png)
+_Capture d'écran du catalogue de produits, présentant la liste des articles disponibles avec leurs détails._
+
+### Catalog Filtered Page
+![Catalog Filtered Page](screenshots/catalogFilteredPage.png)
+_Capture d'écran du catalogue après application d'un filtre, montrant les produits correspondant aux critères sélectionnés._
+
+### Catalog Searched Page
+![Catalog Searched Page](screenshots/catalogSearchedPage.png)
+_Capture d'écran du catalogue après une recherche, affichant les résultats pertinents en fonction du terme de recherche._
+
+### Cart Page
+![Cart Page](screenshots/cartPage.png)
+_Capture d'écran de la page du panier, détaillant les articles ajoutés, leurs quantités et le total._
+
+---
+
+## 🚀 Flux de Données
 
 1. **ProductService** fournit 10 produits (liste statique embarquée dans l'application Angular)
 2. **CatalogComponent** affiche les produits avec filtrage et recherche
@@ -313,7 +343,7 @@ Lance le serveur SSR sur **http://localhost:4200**.
 ## 👨‍💻 Auteur
 
 **Youssef Lazzouzi**  
-Étudiant - Faculté Polydisciplinaire de Larache  
+Étudiant -Faculté Polydisciplinaire de Larache  
 Filière : Licence Développement Informatique et Méthodes DevOps
 
 ---
