@@ -186,14 +186,16 @@ class ShoppingCart {
 
 ### Installation
 ```bash
-# Cloner le dépôt
-git clone <repo-url>
+# 1. Cloner le dépôt
+# Remplacez <YOUR_REPO_URL> par l'URL de votre dépôt GitHub si vous l'avez forké.
+# Sinon, utilisez l'URL du dépôt original :
+git clone https://github.com/LazzouziYoussefEtu/TP_Angular_WebFullStack.git
 cd TP4
 
-# Installer les dépendances du projet principal
+# 2. Installer les dépendances du projet principal
 npm install
 
-# Naviguer vers le répertoire de l'API et installer ses dépendances
+# 3. Naviguer vers le répertoire de l'API et installer ses dépendances
 cd api-server
 npm install
 cd ..
