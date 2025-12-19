@@ -11,14 +11,14 @@
 
 Application e-commerce complète développée en **Angular 21** (dernière version stable 2024-11) avec une architecture modulaire, standalone components, et gestion avancée du panier avec interface intuitive.
 
-**Dernière mise à jour :** Dépendances mises à jour vers les dernières versions stables (Angular 21, TypeScript 5.9, Node.js LTS compatible).
+**Dernière mise à jour :** 2025-12-19. Dépendances mises à jour vers les dernières versions stables (Angular 21, TypeScript 5.9, Node.js LTS compatible).
 
 ---
 
 ## 🎯 Fonctionnalités Principales
 
 ### ✅ Catalogue Produits
-- **Affichage dynamique** de 10 produits avec descriptions multi-lignes
+- **Affichage dynamique** de 10 produits avec descriptions multi-lignes (données statiques embarquées)
 - **Recherche en temps réel** par titre de produit
 - **Filtrage par catégories** (Tablettes, Smartphones, Téléviseurs, Ordinateurs, Audio, Wearables, Livres, Photo, Imprimantes)
 - **Clics sur produit** → Ouverture modal avec détails complets
@@ -86,7 +86,8 @@ src/app/
 - **Angular Router** pour la navigation SPA
 - **Angular Forms** (ngModel) pour les entrées utilisateur
 - **CSS3** pour styling responsive
-- **Express.js 5.x** pour server-side rendering (SSR)
+- **Express.js 5.x** pour le backend API (séparé de l'application Angular)
+- **@angular/platform-server** et **@angular/ssr** pour le Server-Side Rendering (SSR)
 - **zone.js 0.15** pour gestion des zones asynchrones
 - **Node.js 20 LTS** (recommandé) ou 24 LTS
 
@@ -146,7 +147,7 @@ class ShoppingCartItem {
 ### ShoppingCart
 ```typescript
 class ShoppingCart {
-  itemsProduct: ShoppingCartItem[]  // Liste d'articles
+  cartItems: ShoppingCartItem[]  // Liste d'articles dans le panier
   addItem()                         // Ajoute un article
   removeItem()                      // Retire un article
   clearCart()                       // Vide le panier
@@ -217,15 +218,12 @@ L'app démarre sur **http://localhost:4200** avec hot-reload automatique.
 
 ### 🔑 Fonctionnalité de Connexion (Sign In)
 
-Une fonctionnalité de connexion a été implémentée pour l'application. Vous pouvez tester cette fonctionnalité en utilisant les identifiants suivants :
+Une fonctionnalité de connexion a été implémentée pour l'application, utilisant une **authentification mockée** à des fins de démonstration.
 
-*   **Email :** `youssef.lazzouzi@etu.uae.ac.ma`
+Vous pouvez tester cette fonctionnalité en utilisant les identifiants suivants :
+
+*   **Email :** `user@example.com`
 *   **Mot de passe :** `password123`
-
-Ou :
-
-*   **Email :** `test@test.com`
-*   **Mot de passe :** `password`
 
 Après la connexion, une icône d'utilisateur apparaîtra dans l'en-tête, vous permettant de vous déconnecter.
 
@@ -246,7 +244,7 @@ Lance le serveur SSR sur **http://localhost:4200**.
 
 ## �� Flux de Données
 
-1. **ProductService** fournit 10 produits (liste statique)
+1. **ProductService** fournit 10 produits (liste statique embarquée dans l'application Angular)
 2. **CatalogComponent** affiche les produits avec filtrage et recherche
 3. Clic sur produit → **ProductDetailsComponent** modal avec overlay
 4. Utilisateur sélectionne quantité → **"Ajouter au panier"**
