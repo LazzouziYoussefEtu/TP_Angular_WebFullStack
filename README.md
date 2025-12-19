@@ -404,7 +404,8 @@ Voici quelques captures d'écran de l'application pour illustrer les différente
 
 ## 👨‍💻 Auteur
 
-**Youssef Lazzouzi** 
+**Youssef Lazzouzi**
+ 
 Étudiant - SMI-0211/23   
 Filière : Licence Développement Informatique et Méthodes DevOps
 
