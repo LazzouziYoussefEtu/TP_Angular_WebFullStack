@@ -264,7 +264,7 @@ Lance le serveur SSR sur **http://localhost:4200**.
 ✅ **Angular 21 Standalone Components** (pas de NgModules)  
 ✅ **Control Flow par blocs** (@if, @for, @switch au lieu de *ngIf, *ngFor)  
 ✅ **Injection de dépendances** (providedIn: 'root')  
-✅ **Data binding bidirectionnel** ([(ngModel]])  
+✅ **Data binding bidirectionnel** ([(ngModel)])  
 ✅ **Event binding** ((click), (change))  
 ✅ **Property binding** ([value], [style], [class])  
 ✅ **Routing** avec Router et Routes  
