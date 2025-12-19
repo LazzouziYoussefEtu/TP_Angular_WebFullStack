@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../services/user.service';
+import { LoginService } from '../services/login.service'; // Use LoginService
 import { IUserCredentials } from '../models/User';
 
 @Component({
   selector: 'app-signin',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule], // Keep FormsModule
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
@@ -20,7 +20,7 @@ export class SigninComponent {
     password: ''
   };
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private loginService: LoginService, private router: Router) {} // Inject LoginService
 
   close() {
     this.router.navigate(['/home']);
@@ -29,15 +29,16 @@ export class SigninComponent {
   signIn() {
     this.signInError = false;
     this.message = 'Signing in...';
-    this.userService.signIn(this.credentials).subscribe({
+    this.loginService.login(this.credentials).subscribe({ // Call loginService.login
       next: () => {
         this.message = null;
         this.router.navigate(['/catalog']);
         console.log('Sign-in successful');
       },
-      error: () => {
+      error: (error) => {
         this.message = null;
         this.signInError = true;
+        console.error('Login failed:', error); // Log the error for debugging
       }
     });
   }

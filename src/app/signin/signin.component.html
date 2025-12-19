@@ -3,21 +3,20 @@
     <button class="close" aria-label="Close" (click)="close()">✕</button>
     <div class="body">
       <h2>Sign In</h2>
-      <form #signInForm="ngForm">
+      <form #signInForm = "ngForm" (ngSubmit)="signIn()">  
         <label>
           Email
           <input required email #email="ngModel" type="email" [(ngModel)]="credentials.email" name="email" />
         </label>
         <label>
           Password
-          <input required type="password" [(ngModel)]="credentials.password" name="password" />
+          <input type="password" [(ngModel)]="credentials.password" name="password" />
         </label>
       </form>
     </div>
     <div class="bottom-bar">
-      <button class="submit" (click)="signIn()" [disabled]="signInForm.invalid">Sign In</button>
+      <button class="submit" [disabled]="" *ngIf="this.credentials.email || this.credentials.password">Sign In</button>
     </div>
     <p class="message" *ngIf="message">{{ message }}</p>
-    <p class="error" *ngIf="signInError">Invalid email or password. Please try again.</p>
   </div>
 </div>
