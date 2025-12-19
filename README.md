@@ -189,7 +189,7 @@ class ShoppingCart {
 # 1. Cloner le dépôt
 # Remplacez <YOUR_REPO_URL> par l'URL de votre dépôt GitHub si vous l'avez forké.
 # Sinon, utilisez l'URL du dépôt original :
-git clone https://github.com/LazzouziYoussefEtu/TP_Angular_WebFullStack.git 
+git clone https://github.com/LazzouziYoussefEtu/TP_Angular_WebFullStack.git TP4
 cd TP4
 
 # 2. Installer les dépendances du projet principal
