@@ -18,6 +18,14 @@ export class User {
     public set email (value : string | undefined) {
         this._email = value;
     }
+
+    private _password?: string | undefined;
+    public get password(): string | undefined {
+        return this._password;
+    }
+    public set password (value : string | undefined) {
+        this._password = value;
+    }
     private _lastName?: String | undefined = "";
     public get lastName(): String | undefined {
         return this._lastName;

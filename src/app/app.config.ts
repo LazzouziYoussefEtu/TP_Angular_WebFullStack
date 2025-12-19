@@ -1,5 +1,6 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http'; // Import provideHttpClient
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -9,5 +10,5 @@ import { provideClientHydration } from '@angular/platform-browser';
  * Provides router and client hydration for the standalone bootstrap process.
  */
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration()]
+  providers: [provideRouter(routes), provideClientHydration(), provideHttpClient()] // Add provideHttpClient
 };
