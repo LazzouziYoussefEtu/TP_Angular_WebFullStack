@@ -130,7 +130,7 @@ class Product {
   productPrice: string        // Prix (ex: "2334 DH")
   productImage: string        // Chemin relatif image
   category: string            // Catégorie
-  productDescription: string  // Description multi-lignes
+  productDescription: string  // Description multi-ligne
 }
 ```
 
@@ -250,104 +250,153 @@ Voici quelques captures d'écran de l'application pour illustrer les différente
 
 ### Home Page
 ![Home Page](screenshots/homePage.png)
-_Capture d'écran de la page d'accueil de l'application, affichant la barre de navigation, le catalogue de produits et les fonctionnalités de recherche/filtrage._
+```html
+<div class="home-container">
+  <h1>Welcome to My Shop</h1>
+  <p>Find the best products and manage your cart.</p>
+  <a routerLink="/catalog" class="cta">Browse Catalog</a>
+</div>
+```
 
 ### Signin Page
 ![Signin Page](screenshots/SigninPage.png)
-_Capture d'écran de la page de connexion._
+```html
+<div class="overlay">
+  <div class="modal">
+    <div class="body">
+      <h2>Sign In</h2>
+      <form #signInForm = "ngForm" (ngSubmit)="signIn()">  
+        <label>
+          Email
+          <input required email #email="ngModel" type="email" [(ngModel)]="credentials.email" name="email" />
+        </label>
+        <label>
+          Password
+          <input type="password" [(ngModel)]="credentials.password" name="password" />
+        </label>
+      </form>
+    </div>
+  </div>
+</div>
+```
 
 ### Catalog Page
 ![Catalog Page](screenshots/catalogPage.png)
-_Capture d'écran du catalogue de produits, présentant la liste des articles disponibles avec leurs détails._
+```html
+<div class="table-responsive">
+  <table class="product-table">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Nom du produit</th>
+        <th>Catégorie</th>
+        <th>Prix</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (p of filteredProducts; track p) {
+        <tr>
+          <td>
+            <img [src]="p.imageUrl()" [alt]="p.productTitle" class="thumb-img">
+          </td>
+          <td class="product-name" (click)="openProductDetails(p)" style="cursor: pointer;">
+            {{ p.productTitle }}
+          </td>
+          <td>
+            <span class="category-badge">{{ p.category }}</span>
+          </td>
+          <td class="product-price">{{ p.productPrice }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+```
 
 ### Catalog Filtered Page
 ![Catalog Filtered Page](screenshots/catalogFilteredPage.png)
-_Capture d'écran du catalogue après application d'un filtre, montrant les produits correspondant aux critères sélectionnés._
+```html
+<div class="filters-container">
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    placeholder="🔍 Rechercher..."
+    class="search-input"
+    />
+
+  <select [(ngModel)]="selectedCategory" class="category-select">
+    <option value="">Toutes les catégories</option>
+    @for (cat of categories; track cat) {
+      <option [value]="cat">{{ cat }}</option>
+    }
+  </select>
+</div>
+```
 
 ### Catalog Searched Page
 ![Catalog Searched Page](screenshots/catalogSearchedPage.png)
-_Capture d'écran du catalogue après une recherche, affichant les résultats pertinents en fonction du terme de recherche._
+```html
+<div class="filters-container">
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    placeholder="🔍 Rechercher..."
+    class="search-input"
+    />
+</div>
+```
 
 ### Cart Page
 ![Cart Page](screenshots/cartPage.png)
-_Capture d'écran de la page du panier, détaillant les articles ajoutés, leurs quantités et le total._
-
----
-
-## 🚀 Flux de Données
-
-1. **ProductService** fournit 10 produits (liste statique embarquée dans l'application Angular)
-2. **CatalogComponent** affiche les produits avec filtrage et recherche
-3. Clic sur produit → **ProductDetailsComponent** modal avec overlay
-4. Utilisateur sélectionne quantité → **"Ajouter au panier"**
-5. **CartService** (Singleton) persiste l'état global du panier
-6. **CartComponent** affiche tous les articles avec:
-   - Badges de quantité colorés (point par unité)
-   - Boutons ± pour ajuster quantité en temps réel
-   - Bouton supprimer pour retirer un article
-7. Boutons d'action : "Vider panier" ou "Confirmer commande"
-
----
-
-## 📝 Points Clés de Programmation
-
-✅ **Angular 21 Standalone Components** (pas de NgModules)  
-✅ **Control Flow par blocs** (@if, @for, @switch au lieu de *ngIf, *ngFor)  
-✅ **Injection de dépendances** (providedIn: 'root')  
-✅ **Data binding bidirectionnel** ([(ngModel)])  
-✅ **Event binding** ((click), (change))  
-✅ **Property binding** ([value], [style], [class])  
-✅ **Routing** avec Router et Routes  
-✅ **Gestion d'état** avec service Singleton  
-✅ **Composants imbriqués** avec @Input/@Output  
-✅ **Styling dynamique** avec [ngStyle] et [ngClass]  
-
----
-
-## 📝 Notes de Développement
-
-- Les descriptions produits utilisent `\n` pour les retours à la ligne
-- CSS `white-space: pre-wrap` préserve les sauts de ligne dans les descriptions
-- Les badges de quantité boucle une palette de 7 couleurs
-- Le panier persiste tant que la page reste ouverte (Singleton CartService)
-- Navigation responsive avec flexbox et média queries
-- Migration Angular 18 → 21 : blocs de contrôle remplacent les directives structurelles
-- TypeScript 5.9 avec ES2022 comme cible (support des APIs modernes)
-- SSR configuré avec Express 5.x et @angular/ssr
-
----
-
-## 🔧 Historique des Mises à Jour
-
-### v2.0 (2024-11-25) - Upgrade Dépendances
-- ✅ Angular 18 → 21 via migrations officielles (18→19→20→21)
-- ✅ TypeScript 5.4 → 5.9 (ES2022)
-- ✅ zone.js 0.14 → 0.15
-- ✅ express 4.21 → 5.x
-- ✅ @types/node 18 → 24
-- ✅ Conversion au contrôle de flux par blocs (@if, @for)
-- ✅ Mise à jour du serveur SSR (provideServerRendering → @angular/ssr)
-- ✅ Tous les packages aux dernières versions stables
-- ✅ Build et tests fonctionnels
-
-### v1.0 (2024-11-24) - Release Initial
-- Architecture e-commerce complète
-- 10 produits avec catégories et descriptions multi-lignes
-- Modal détails produit avec quantité ajustable
-- Panier avec badges colorés et boutons ± quantité
-- Navigation topbar sticky
-- Responsive design complet
-
----
-
-## 👨‍💻 Auteur
-
-**Youssef Lazzouzi**  
-Étudiant -Faculté Polydisciplinaire de Larache  
-Filière : Licence Développement Informatique et Méthodes DevOps
-
----
-
-## 📄 Licence
-
-Ce projet est un travail académique pour le module de Programmation Full Stack.
+```html
+<div class="cart-container">
+  <h2>Votre Panier 🛒</h2>
+  @if (cartItems.length === 0) {
+    <div class="empty-cart-message">
+      <p>Votre panier est vide pour le moment.</p>
+      <a routerLink="/catalog" class="back-link">Retourner au catalogue</a>
+    </div>
+  }
+  @if (cartItems.length > 0) {
+    <div class="table-responsive">
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Prix Unitaire</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of cartItems; track item) {
+            <tr>
+              <td>
+                <img [src]="item.itemProduct.imageUrl()" [alt]="item.itemProduct.productTitle" class="thumb-img">
+              </td>
+              <td class="product-name">{{ item.itemProduct.productTitle }}</td>
+              <td style="font-weight: bold;">
+                <div class="qty-adjust">
+                  <button (click)="decrementQuantity(item)" class="qty-btn">−</button>
+                  <span class="qty-display">{{ item.quantity }}</span>
+                  <button (click)="incrementQuantity(item)" class="qty-btn">+</button>
+                </div>
+              </td>
+              <td class="product-price">{{ item.itemProduct.productPrice }}</td>
+              <td>
+                <button (click)="removeproductfromcart(item)" class="delete-btn">
+                  Retirer 🗑️
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      <div class="cart-actions">
+        <button (click)="clearCart()" class="clear-btn">Vider le panier 🧹</button>
+        <button (click)="buy()" class="buy-btn">Confirmer la commande ✅</button>
+      </div>
+    </div>
+  }
+</div>
