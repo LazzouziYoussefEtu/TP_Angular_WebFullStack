@@ -405,8 +405,7 @@ Voici quelques captures d'écran de l'application pour illustrer les différente
 ## 👨‍💻 Auteur
 
 **Youssef Lazzouzi** 
-N° Inscription : SMI-0211/23  
-Étudiant -Faculté Polydisciplinaire de Larache  
+Étudiant - SMI-0211/23   
 Filière : Licence Développement Informatique et Méthodes DevOps
 
 ---
