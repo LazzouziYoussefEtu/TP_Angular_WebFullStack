@@ -400,3 +400,15 @@ Voici quelques captures d'écran de l'application pour illustrer les différente
     </div>
   }
 </div>
+
+## 👨‍💻 Auteur
+
+**Youssef Lazzouzi**  
+Étudiant -Faculté Polydisciplinaire de Larache  
+Filière : Licence Développement Informatique et Méthodes DevOps
+
+---
+
+## 📄 Licence
+
+Ce projet est un travail académique pour le module de Programmation Full Stack.
