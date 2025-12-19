@@ -400,6 +400,7 @@ Voici quelques captures d'écran de l'application pour illustrer les différente
     </div>
   }
 </div>
+```
 
 ## 👨‍💻 Auteur
 
