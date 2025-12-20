@@ -1,8 +1,9 @@
 :host {
   display: block;
-  background: #ffffffcc;
+  background: var(--header-bg);
   backdrop-filter: blur(4px);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  box-shadow: 0 1px 4px var(--header-shadow);
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
 .container {
@@ -33,16 +34,17 @@
 }
 
 .nav-links a {
-  color: #333;
+  color: var(--nav-link-color);
   text-decoration: none;
   font-weight: 600;
   padding: 6px 8px;
   border-radius: 6px;
+  transition: color 0.3s, background 0.3s;
 }
 
 .nav-links a.active {
-  background: #009879;
-  color: white;
+  background: var(--nav-link-active-bg);
+  color: var(--nav-link-active-text);
 }
 
 .cart {
@@ -70,6 +72,20 @@
   gap: 12px;
 }
 
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
 .profile-img {
   height: 40px;
   width: 40px;
@@ -84,18 +100,30 @@
   border-radius: 0; /* SVGs might not need border-radius, or can be styled differently */
   cursor: pointer;
   padding: 5px; /* Adjust as needed */
-  background-color: #f0f0f0; /* Example background */
+  background-color: transparent; 
+  filter: invert(var(--invert-icon, 0)); /* Optional: to invert icon color in dark mode if needed */
+}
+
+body.dark-theme .profile-img[src$=".svg"] {
+   filter: invert(1);
 }
 
 .sign-out {
   position: absolute;
   right: 16px;
   top: 62px;
-  background: white;
-  border: 1px solid #eee;
+  background: var(--card-bg);
+  border: 1px solid var(--header-shadow);
   padding: 8px;
   border-radius: 6px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 20px var(--header-shadow);
+  z-index: 1000;
+}
+
+.cta {
+  color: var(--nav-link-color);
+  text-decoration: none;
+  font-weight: 600;
 }
 
 @media (max-width: 720px) {

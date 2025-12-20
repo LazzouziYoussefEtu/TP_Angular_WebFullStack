@@ -9,13 +9,13 @@
 .empty-cart-message {
     text-align: center;
     padding: 40px;
-    background-color: #f8f9fa;
+    background-color: var(--secondary-bg);
     border-radius: 8px;
-    border: 1px dashed #ccc;
+    border: 1px dashed var(--border-color);
 }
 
 .back-link {
-    color: #009879;
+    color: var(--primary-color);
     font-weight: bold;
     text-decoration: none;
 }
@@ -23,9 +23,9 @@
 /* --- Style du Tableau (Identique au Catalogue) --- */
 .table-responsive {
     overflow-x: auto;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px var(--shadow-color);
     border-radius: 8px;
-    background-color: white;
+    background-color: var(--card-bg);
 }
 
 .cart-table {
@@ -34,18 +34,18 @@
 }
 
 .cart-table thead tr {
-    background-color: #009879; /* Même vert que le catalogue */
-    color: #ffffff;
+    background-color: var(--table-header-bg);
+    color: var(--table-header-text);
     text-align: left;
 }
 
 .cart-table th, .cart-table td {
     padding: 12px 15px;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid var(--table-border);
 }
 
 .cart-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+    background-color: var(--table-row-bg-even);
 }
 
 /* --- Images et Textes --- */
@@ -54,11 +54,11 @@
     height: 50px;
     object-fit: cover;
     border-radius: 4px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--input-border);
 }
 
 .product-name { font-weight: 500; }
-.product-price { color: #333; }
+.product-price { color: var(--text-color); }
 
 /* Quantity badges: small colored dots representing each unit */
 .qty-badges { display:flex; align-items:center; gap:8px; }
@@ -68,9 +68,9 @@
   border-radius: 50%;
   display: inline-block;
   border: 2px solid rgba(255,255,255,0.6);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 2px var(--shadow-color);
 }
-.qty-label { font-weight: 600; color: #222; }
+.qty-label { font-weight: 600; color: var(--text-color); }
 
 /* Quantity adjustment controls */
 .qty-adjust {
@@ -81,8 +81,8 @@
 }
 
 .qty-btn {
-  background: #007bff;
-  color: white;
+  background: var(--btn-secondary-btn-bg);
+  color: var(--button-text);
   border: none;
   width: 24px;
   height: 24px;
@@ -94,19 +94,20 @@
 }
 
 .qty-btn:hover {
-  background: #0056b3;
+  background: var(--btn-secondary-btn-hover);
 }
 
 .qty-display {
   min-width: 30px;
   text-align: center;
   font-weight: 600;
+  color: var(--text-color);
 }/* --- Boutons spécifiques au Panier --- */
 
 /* Bouton Retirer (Rouge) */
 .delete-btn {
-    background-color: #dc3545;
-    color: white;
+    background-color: var(--btn-danger-bg);
+    color: var(--button-text);
     border: none;
     padding: 6px 12px;
     border-radius: 4px;
@@ -116,7 +117,7 @@
 }
 
 .delete-btn:hover {
-    background-color: #bb2d3b;
+    background-color: var(--btn-danger-hover);
 }
 
 /* Zone d'action en bas */
@@ -128,31 +129,31 @@
 
 /* Bouton Acheter (Gros bouton Vert) */
 .buy-btn {
-    background-color: #28a745;
-    color: white;
+    background-color: var(--btn-success-bg);
+    color: var(--button-text);
     border: none;
     padding: 12px 24px;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px var(--shadow-color);
     transition: transform 0.2s;
 }
 
 .buy-btn:hover {
-    background-color: #218838;
+    background-color: var(--btn-success-hover);
     transform: scale(1.05); /* Petit effet de zoom */
 }
 
 .clear-btn {
-    background-color: #ffc107;
-    color: white;
+    background-color: var(--btn-warning-bg);
+    color: white; /* Warning text often better white or black, keeping white for consistency with existing vars */
     border: none;
     padding: 12px 24px;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px var(--shadow-color);
     transition: transform 0.2s;
     margin-right: 10px;
 }

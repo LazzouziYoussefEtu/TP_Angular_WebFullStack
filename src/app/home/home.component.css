@@ -6,12 +6,12 @@
 }
 
 .home-container h1 {
-  color: #009879;
+  color: var(--primary-color);
   margin-bottom: 12px;
 }
 
 .home-container p {
-  color: #444;
+  color: var(--text-color);
   margin-bottom: 18px;
 }
 
@@ -22,9 +22,14 @@
 
 .cta {
   display: inline-block;
-  background: #009879;
-  color: white;
+  background: var(--primary-color);
+  color: var(--button-text);
   padding: 8px 14px;
   border-radius: 6px;
   text-decoration: none;
+  transition: background 0.3s;
+}
+
+.cta:hover {
+  background: var(--primary-hover);
 }

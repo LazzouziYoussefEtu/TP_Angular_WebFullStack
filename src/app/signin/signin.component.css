@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--modal-overlay);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,11 +13,11 @@
 
 .modal {
   position: relative;
-  background: white;
+  background: var(--modal-bg);
   border-radius: 8px;
   width: 90%;
   max-width: 420px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 40px var(--shadow-color);
   overflow: hidden;
 }
 
@@ -29,7 +29,7 @@
   border: none;
   font-size: 28px;
   cursor: pointer;
-  color: #666;
+  color: var(--text-color);
   padding: 0;
   width: 32px;
   height: 32px;
@@ -37,28 +37,39 @@
   align-items: center;
   justify-content: center;
   z-index: 10;
+  opacity: 0.6;
 }
 
-.close:hover { color: #009879; }
+.close:hover { color: var(--primary-color); opacity: 1; }
 
 .body {
   padding: 24px;
 }
 
-.body h2 { color: #009879; margin-bottom: 16px; }
-.body label { display: block; margin-bottom: 12px; font-weight: 600; }
-.body input { width: 100%; padding: 8px; margin-top: 4px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 4px; }
+.body h2 { color: var(--primary-color); margin-bottom: 16px; }
+.body label { display: block; margin-bottom: 12px; font-weight: 600; color: var(--text-color); }
+.body input { 
+    width: 100%; 
+    padding: 8px; 
+    margin-top: 4px; 
+    box-sizing: border-box; 
+    border: 1px solid var(--input-border); 
+    border-radius: 4px; 
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
 
 .bottom-bar {
   padding: 12px 24px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border-color);
   display: flex;
   gap: 8px;
+  background-color: var(--secondary-bg);
 }
 
 .submit {
-  background: #009879;
-  color: white;
+  background: var(--btn-primary-bg);
+  color: var(--button-text);
   border: none;
   padding: 8px 16px;
   border-radius: 6px;
@@ -66,7 +77,8 @@
   flex: 1;
 }
 
-.submit:hover { background: #007a63; }
+.submit:hover { background: var(--btn-primary-hover); }
 
-.message { margin: 8px 24px 12px; color: #333; font-size: 14px; }
-
+.message { margin: 8px 24px 12px; color: var(--text-color); font-size: 14px; }
+.message.error { color: var(--btn-danger-bg); }
+.error-hint { color: var(--btn-danger-bg); font-size: 0.85em; margin-top: 4px; display: block; }

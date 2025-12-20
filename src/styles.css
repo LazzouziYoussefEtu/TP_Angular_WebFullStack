@@ -1,1 +1,111 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  /* Core Colors */
+  --bg-color: #f9f9f9;
+  --text-color: #333;
+  --primary-color: #009879;
+  --primary-hover: #007a63;
+  --secondary-bg: #f8f9fa;
+  
+  /* Header */
+  --header-bg: #ffffffcc;
+  --header-shadow: rgba(0,0,0,0.06);
+  --nav-link-color: #333;
+  --nav-link-active-bg: #009879;
+  --nav-link-active-text: white;
+  
+  /* Cards & Modals */
+  --card-bg: white;
+  --modal-bg: white;
+  --modal-overlay: rgba(0, 0, 0, 0.5);
+  
+  /* Inputs & Borders */
+  --input-bg: white;
+  --input-border: #ddd;
+  --border-color: #eee;
+  
+  /* Tables */
+  --table-header-bg: #009879;
+  --table-header-text: #ffffff;
+  --table-row-bg-even: #f3f3f3;
+  --table-row-hover-bg: #f1f1f1;
+  --table-border: #dddddd;
+  
+  /* Buttons */
+  --button-text: white;
+  --btn-primary-bg: #009879;
+  --btn-primary-hover: #007a63;
+  --btn-info-bg: #008CBA;
+  --btn-info-hover: #005f7f;
+  --btn-success-bg: #28a745;
+  --btn-success-hover: #218838;
+  --btn-danger-bg: #dc3545;
+  --btn-danger-hover: #bb2d3b;
+  --btn-warning-bg: #ffc107;
+  --btn-secondary-btn-bg: #007bff;
+  --btn-secondary-btn-hover: #0056b3;
+
+  /* Misc */
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --invert-icon: 0;
+}
+
+body.dark-theme {
+  /* Core Colors */
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --primary-color: #4db6ac;
+  --primary-hover: #80cbc4;
+  --secondary-bg: #1e1e1e;
+  
+  /* Header */
+  --header-bg: #1e1e1ecc;
+  --header-shadow: rgba(0,0,0,0.5);
+  --nav-link-color: #e0e0e0;
+  --nav-link-active-bg: #4db6ac;
+  --nav-link-active-text: #121212;
+  
+  /* Cards & Modals */
+  --card-bg: #1e1e1e;
+  --modal-bg: #1e1e1e;
+  --modal-overlay: rgba(0, 0, 0, 0.7);
+  
+  /* Inputs & Borders */
+  --input-bg: #2c2c2c;
+  --input-border: #444;
+  --border-color: #333;
+  
+  /* Tables */
+  --table-header-bg: #333;
+  --table-header-text: #e0e0e0;
+  --table-row-bg-even: #1a1a1a;
+  --table-row-hover-bg: #2a2a2a;
+  --table-border: #444;
+  
+  /* Buttons */
+  --button-text: #121212;
+  --btn-primary-bg: #4db6ac;
+  --btn-primary-hover: #80cbc4;
+  --btn-info-bg: #4fc3f7;
+  --btn-info-hover: #81d4fa;
+  --btn-success-bg: #66bb6a;
+  --btn-success-hover: #81c784;
+  --btn-danger-bg: #ef5350;
+  --btn-danger-hover: #e57373;
+  --btn-warning-bg: #ffca28;
+  --btn-secondary-btn-bg: #42a5f5;
+  --btn-secondary-btn-hover: #64b5f6;
+
+  /* Misc */
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --invert-icon: 1;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+  margin: 0;
+}

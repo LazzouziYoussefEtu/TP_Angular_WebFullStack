@@ -9,6 +9,10 @@
     </div>
 
     <div class="right">
+      <button class="theme-toggle" (click)="toggleTheme()" aria-label="Toggle Dark Mode">
+        {{ isDarkTheme ? '☀️' : '🌙' }}
+      </button>
+
       <ng-container *ngIf="!user">
         <a routerLink="/signin" routerLinkActive="active">Sign In</a>
         <a href="#" class="cta">Register</a>
