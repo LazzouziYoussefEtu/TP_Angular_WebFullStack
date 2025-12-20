@@ -1,4 +1,4 @@
-# TP4 Angular : Application E-Commerce Avancée
+# TP4 Angular : Application E-Commerce Full Stack & Multilingue
 
 **Université Abdelmalek Essaâdi** | **Faculté Polydisciplinaire - Larache**  
 **Module :** Programmation Full Stack  
@@ -9,40 +9,41 @@
 
 ## 📝 Description du Projet
 
-Application e-commerce complète développée en **Angular 21** (dernière version stable 2024-11) avec une architecture modulaire, standalone components, et gestion avancée du panier avec interface intuitive.
+Application e-commerce avancée développée en **Angular 21** intégrant un backend **Express.js**, un support complet du **mode sombre**, une internationalisation (**i18n**) et une architecture réactive basée sur les **Observables**.
 
-**Dernière mise à jour :** 2025-12-19. Dépendances mises à jour vers les dernières versions stables (Angular 21, TypeScript 5.9, Node.js LTS compatible).
+**Dernière mise à jour :** 2025-12-20. Intégration API réelle, Dark Mode unifié, support multilingue (FR/EN) et nettoyage complet du code.
 
 ---
 
 ## 🎯 Fonctionnalités Principales
 
+### 🌓 Mode Sombre Unifié
+- **Thématisation complète** via variables CSS natives.
+- **Persistance du choix** dans le `localStorage`.
+- **Icônes monocolores** (SVG) qui s'inversent (Noir/Blanc) selon le thème.
+- **Logos dynamiques** : Version dégradée pour le mode clair, version blanche pour le mode sombre.
+
+### 🌍 Support Multilingue (i18n)
+- **Internationalisation complète** avec `@ngx-translate`.
+- **Langues supportées** : Français (FR) et Anglais (EN).
+- **Traduction dynamique** des catégories, messages d'erreur, et interfaces.
+- **Persistance de la langue** préférée.
+
+### 📡 Intégration API Réelle
+- **Migration des données** : Les produits ne sont plus statiques mais récupérés via un serveur API Node.js.
+- **Authentification réelle** : Système de Sign-In via POST API avec gestion des erreurs et états de chargement.
+- **Gestion asynchrone** : Utilisation intensive de `HttpClient` et RxJS.
+
 ### ✅ Catalogue Produits
-- **Affichage dynamique** de 10 produits avec descriptions multi-lignes (données statiques embarquées)
-- **Recherche en temps réel** par titre de produit
-- **Filtrage par catégories** (Tablettes, Smartphones, Téléviseurs, Ordinateurs, Audio, Wearables, Livres, Photo, Imprimantes)
-- **Clics sur produit** → Ouverture modal avec détails complets
-- Images produit, prix, catégorie et référence
+- **Récupération dynamique** via `/api/products`.
+- **Recherche et filtrage** instantanés.
+- **Traduction des catégories** (Tablettes, Smartphones, etc.).
+- **États de chargement** et gestion des erreurs de connexion.
 
-### 🛍️ Modal Détails Produit
-- **Vue détaillée** avec image produit et description complète (3+ lignes)
-- **Sélecteur de quantité** ajustable (min: 1, max: 999)
-- **Bouton "Ajouter au panier"** avec la quantité sélectionnée
-- **Fermeture** via bouton ✕ ou clic sur fond gris
-- Design responsive avec overlay semi-transparent
-
-### 🛒 Panier Avancé
-- **Affichage tableau** de tous les articles du panier
-- **Quantités avec badges colorés** (un point couleur par unité)
-- **Contrôles de quantité** : boutons − et + pour ajuster directement
-- **Suppression d'articles** avec bouton "Retirer 🗑️"
-- **Actions panier** : "Vider le panier " et "Confirmer la commande ✅"
-- **Message panier vide** avec lien retour au catalogue
-
-### 🧭 Navigation
-- **Barre de navigation sticky** en haut (Catalogue | Mon Panier)
-- **Liens de navigation** fonctionnels avec routeur Angular
-- Design cohérent et ergonomique
+### 🛒 Panier & Modal
+- **Gestion réactive** des quantités.
+- **Badges colorés** par unité.
+- **Modal de détails** avec images haute qualité et descriptions traduites.
 
 ---
 
@@ -50,367 +51,108 @@ Application e-commerce complète développée en **Angular 21** (dernière versi
 
 ### Structure du Projet
 ```
-src/app/
-├── models/                    # Classes métiers
-│   ├── Product.ts            # Modèle produit (titre, prix, image, catégorie, description)
-│   ├── ShoppingCart.ts        # Panier (collection d'articles)
-│   └── ShoppingCartItem.ts    # Élément du panier (produit + quantité)
+/
+├── api-server/                # Serveur Express.js (Port 3001)
+│   └── index.js               # Endpoints : /api/signin, /api/products
 │
-├── services/                  # Injection de dépendances
-│   ├── product.service.ts     # Fournit la liste des 10 produits
-│   └── cart.service.ts        # Gère l'état global du panier (Singleton)
-│
-├── components/
-│   ├── catalog/
-│   │   ├── catalog.component.ts
-│   │   ├── catalog.component.html
-│   │   └── catalog.component.css
-│   ├── cart/
-│   │   ├── cart.component.ts
-│   │   ├── cart.component.html
-│   │   └── cart.component.css
-│   ├── product-details/       # Modal pour détails produit
-│   │   ├── product-details.component.ts
-│   │   ├── product-details.component.html
-│   │   └── product-details.component.css
-│   └── app.component.*
-│
-├── app.routes.ts              # Routage (Catalog ↔ Cart)
-└── assets/images/             # Images produits
+├── src/app/
+│   ├── models/                # Modèles de données (Product, User, Cart)
+│   ├── services/              # Services (LoginService, ProductService, CartService)
+│   ├── components/            # Composants Standalone
+│   ├── assets/
+│   │   ├── i18n/              # Fichiers de traduction (en.json, fr.json)
+│   │   ├── icons/             # Icônes SVG monocolores
+│   │   └── images/            # Assets graphiques (PNG logos)
+│   └── app.config.ts          # Config HttpClient (fetch) et TranslateModule
 ```
 
 ### Technologies Utilisées
-- **Angular 21** (dernière version stable) avec Standalone Components et contrôle de flux par blocs
-- **TypeScript 5.9** strict avec ES2022 comme cible
-- **RxJS** pour services réactifs
-- **Angular Router** pour la navigation SPA
-- **Angular Forms** (ngModel) pour les entrées utilisateur
-- **CSS3** pour styling responsive
-- **Express.js 5.x** pour le backend API (séparé de l'application Angular)
-- **@angular/platform-server** et **@angular/ssr** pour le Server-Side Rendering (SSR)
-- **zone.js 0.15** pour gestion des zones asynchrones
-- **Node.js 20 LTS** (recommandé) ou 24 LTS
-
----
-
-## 📦 Dépendances Principales
-
-### Angular 21.x (2024-11 Latest)
-- @angular/core, @angular/common, @angular/router, @angular/forms
-- @angular/platform-browser, @angular/platform-browser-dynamic
-- @angular/platform-server (SSR)
-- @angular/ssr (Server-side rendering utilities)
-- @angular/animations
-
-### Développement & Build
-- @angular/cli 21.x (tooling)
-- @angular/compiler-cli 21.x (TypeScript compiler)
-- @angular/build 21.x (build system)
-- typescript 5.9.x (language)
-- zone.js 0.15.x (async handling)
-
-### Serveur
-- express 5.x (HTTP server, SSR)
-- @types/express 5.x (TypeScript types)
-- @types/node 24.x (Node.js types)
-
-### Testing
-- jasmine-core 5.12.x (test framework)
-- karma 6.4.x (test runner)
-
----
-
-## 📦 Modèles de Données
-
-### Product
-```typescript
-class Product {
-  productID: string           // Identifiant unique
-  productTitle: string        // Nom du produit
-  productPrice: string        // Prix (ex: "2334 DH")
-  productImage: string        // Chemin relatif image
-  category: string            // Catégorie
-  productDescription: string  // Description multi-ligne
-}
-```
-
-### ShoppingCartItem
-```typescript
-class ShoppingCartItem {
-  itemProduct: Product   // Référence produit
-  quantity: number       // Nombre d'unités
-  addProduct()          // Incrémente quantité
-  subtractProduct()     // Décrémente quantité
-}
-```
-
-### ShoppingCart
-```typescript
-class ShoppingCart {
-  cartItems: ShoppingCartItem[]  // Liste d'articles dans le panier
-  addItem()                         # Ajoute un article
-  removeItem()                      # Retire un article
-  clearCart()                       # Vide le panier
-}
-```
-
----
-
-## 🎨 Caractéristiques UX/UI
-
-### Palette de Couleurs
-- **Primaire (Vert)** : #009879 (Navigation, boutons principaux)
-- **Secondaire (Bleu)** : #007bff (Quantité, détails)
-- **Succès (Vert)** : #28a745 (Bouton confirmer)
-- **Danger (Rouge)** : #dc3545 (Bouton supprimer)
-- **Attention (Jaune)** : #ffc107 (Bouton vider)
-
-### Badges de Quantité
-- Affiche un **point coloré** par unité (cyclant sur 7 couleurs)
-- Permet une visualisation rapide des quantités
-- Accessible avec titre "Unit N" au survol
-
-### Responsivité
-- Tables avec scroll horizontal sur mobile
-- Modal adaptée à toutes les tailles
-- Navigation sticky en haut pour accès permanent
+- **Angular 21** (Standalone, Signals, Block control flow)
+- **@ngx-translate** (Internationalisation)
+- **Express.js 5.x** (Backend API & CORS)
+- **Node.js 25.x** (LTS compatible)
+- **RxJS** (Gestion des flux asynchrones)
+- **CSS Variables** (Thématisation dynamique)
 
 ---
 
 ## 🚀 Installation & Démarrage
 
-### Prérequis
-- **Node.js 20 LTS** (recommandé) ou 24 LTS (Node 25+ fonctionne mais n'est pas LTS)
-- **npm 10+** ou **yarn**
-- Angular CLI 21+
-
-### Installation
+### 1. Installation
 ```bash
-# 1. Cloner le dépôt
-# Remplacez <YOUR_REPO_URL> par l'URL de votre dépôt GitHub si vous l'avez forké.
-# Sinon, utilisez l'URL du dépôt original :
-git clone https://github.com/LazzouziYoussefEtu/TP_Angular_WebFullStack.git TP4
-cd TP4
+git clone https://github.com/LazzouziYoussefEtu/TP_Angular_WebFullStack.git
+cd TP_Angular_WebFullStack
 
-# 2. Installer les dépendances du projet principal
+# Frontend
 npm install
 
-# 3. Naviguer vers le répertoire de l'API et installer ses dépendances
+# Backend
 cd api-server
 npm install
 cd ..
 ```
 
-### Lancer l'application (Mode développement)
-
-Pour que l'application fonctionne correctement, le serveur API doit être démarré en premier.
-
-```bash
-# Démarrer le serveur API (dans un terminal séparé)
-node api-server/index.js
-```
-
-Ensuite, dans un autre terminal, lancez l'application Angular :
+### 2. Lancer le Projet
+Il est impératif de lancer le serveur API pour que les produits et la connexion fonctionnent.
 
 ```bash
-# Lancer l'application Angular
+# Terminal 1 : API Server
+cd api-server && npm start
+
+# Terminal 2 : Angular App
 npm start
 ```
-L'app démarre sur **http://localhost:4200** avec hot-reload automatique.
-
-### 🔑 Fonctionnalité de Connexion (Sign In)
-
-Une fonctionnalité de connexion a été implémentée pour l'application, utilisant une **authentification mockée** à des fins de démonstration.
-
-Vous pouvez tester cette fonctionnalité en utilisant les identifiants suivants :
-
-*   **Email :** `user@example.com`
-*   **Mot de passe :** `password123`
-
-Après la connexion, une icône d'utilisateur apparaîtra dans l'en-tête, vous permettant de vous déconnecter.
-
-### Build production
-```bash
-npm run build
-```
-Les fichiers optimisés sont générés dans `dist/tp4/`.
-
-### Build avec Server-Side Rendering (SSR)
-```bash
-npm run build
-npm run serve:ssr:TP4
-```
-Lance le serveur SSR sur **http://localhost:4200**.
+L'application est disponible sur **http://localhost:4200**.
 
 ---
 
-## 📸 Screenshots
+## 🔑 Identifiants de Test
+- **Email :** `youssef.lazzouzi@etu.uae.ac.ma`
+- **Mot de passe :** `password123`
 
-Voici quelques captures d'écran de l'application pour illustrer les différentes fonctionnalités et l'interface utilisateur.
+---
 
-### Home Page
-![Home Page](screenshots/homePage.png)
-```html
-<div class="home-container">
-  <h1>Welcome to My Shop</h1>
-  <p>Find the best products and manage your cart.</p>
-  <a routerLink="/catalog" class="cta">Browse Catalog</a>
-</div>
-```
+## 📸 Captures d'écran
 
-### Signin Page
-![Signin Page](screenshots/SigninPage.png)
-```html
-<div class="overlay">
-  <div class="modal">
-    <div class="body">
-      <h2>Sign In</h2>
-      <form #signInForm = "ngForm" (ngSubmit)="signIn()">  
-        <label>
-          Email
-          <input required email #email="ngModel" type="email" [(ngModel)]="credentials.email" name="email" />
-        </label>
-        <label>
-          Password
-          <input type="password" [(ngModel)]="credentials.password" name="password" />
-        </label>
-      </form>
-    </div>
-  </div>
-</div>
-```
+### ☀️ Mode Clair (Light Mode)
+Organisé dans le dossier `screenshots/light-mode/`
 
-### Catalog Page
-![Catalog Page](screenshots/catalogPage.png)
-```html
-<div class="table-responsive">
-  <table class="product-table">
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Nom du produit</th>
-        <th>Catégorie</th>
-        <th>Prix</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (p of filteredProducts; track p) {
-        <tr>
-          <td>
-            <img [src]="p.imageUrl()" [alt]="p.productTitle" class="thumb-img">
-          </td>
-          <td class="product-name" (click)="openProductDetails(p)" style="cursor: pointer;">
-            {{ p.productTitle }}
-          </td>
-          <td>
-            <span class="category-badge">{{ p.category }}</span>
-          </td>
-          <td class="product-price">{{ p.productPrice }}</td>
-        </tr>
-      }
-    </tbody>
-  </table>
-</div>
-```
+| Accueil | Catalogue |
+| :---: | :---: |
+| ![Home Light](screenshots/light-mode/homePageLightMode.png) | ![Catalog Light](screenshots/light-mode/catalogPageLightMode.png) |
 
-### Catalog Filtered Page
-![Catalog Filtered Page](screenshots/catalogFilteredPage.png)
-```html
-<div class="filters-container">
-  <input
-    type="text"
-    [(ngModel)]="searchTerm"
-    placeholder="🔍 Rechercher..."
-    class="search-input"
-    />
+| Détails Produit | Panier |
+| :---: | :---: |
+| ![Details Light](screenshots/light-mode/productDetailsPageLightMode.png) | ![Cart Light](screenshots/light-mode/CartPageLightMode.png) |
 
-  <select [(ngModel)]="selectedCategory" class="category-select">
-    <option value="">Toutes les catégories</option>
-    @for (cat of categories; track cat) {
-      <option [value]="cat">{{ cat }}</option>
-    }
-  </select>
-</div>
-```
+| Connexion Réussie |
+| :---: |
+| ![Login Success](screenshots/light-mode/successfulLoginPageLightMode.png) |
 
-### Catalog Searched Page
-![Catalog Searched Page](screenshots/catalogSearchedPage.png)
-```html
-<div class="filters-container">
-  <input
-    type="text"
-    [(ngModel)]="searchTerm"
-    placeholder="🔍 Rechercher..."
-    class="search-input"
-    />
-</div>
-```
+### 🌙 Mode Sombre (Dark Mode)
+Organisé dans le dossier `screenshots/dark-mode/`
 
-### Cart Page
-![Cart Page](screenshots/cartPage.png)
-```html
-<div class="cart-container">
-  <h2>Votre Panier 🛒</h2>
-  @if (cartItems.length === 0) {
-    <div class="empty-cart-message">
-      <p>Votre panier est vide pour le moment.</p>
-      <a routerLink="/catalog" class="back-link">Retourner au catalogue</a>
-    </div>
-  }
-  @if (cartItems.length > 0) {
-    <div class="table-responsive">
-      <table class="cart-table">
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>Produit</th>
-            <th>Quantité</th>
-            <th>Prix Unitaire</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (item of cartItems; track item) {
-            <tr>
-              <td>
-                <img [src]="item.itemProduct.imageUrl()" [alt]="item.itemProduct.productTitle" class="thumb-img">
-              </td>
-              <td class="product-name">{{ item.itemProduct.productTitle }}</td>
-              <td style="font-weight: bold;">
-                <div class="qty-adjust">
-                  <button (click)="decrementQuantity(item)" class="qty-btn">−</button>
-                  <span class="qty-display">{{ item.quantity }}</span>
-                  <button (click)="incrementQuantity(item)" class="qty-btn">+</button>
-                </div>
-              </td>
-              <td class="product-price">{{ item.itemProduct.productPrice }}</td>
-              <td>
-                <button (click)="removeproductfromcart(item)" class="delete-btn">
-                  Retirer 🗑️
-                </button>
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
-      <div class="cart-actions">
-        <button (click)="clearCart()" class="clear-btn">Vider le panier 🧹</button>
-        <button (click)="buy()" class="buy-btn">Confirmer la commande ✅</button>
-      </div>
-    </div>
-  }
-</div>
-```
+| Accueil | Catalogue |
+| :---: | :---: |
+| ![Home Dark](screenshots/dark-mode/homePageDarkMode.png) | ![Catalog Dark](screenshots/dark-mode/catalogPageDarkMode.png) |
+
+| Détails Produit | Panier |
+| :---: | :---: |
+| ![Details Dark](screenshots/dark-mode/productDetailsPageDarkMode.png) | ![Cart Dark](screenshots/dark-mode/CartPagedarkMode.png) |
+
+| Erreur Connexion |
+| :---: |
+| ![Login Error](screenshots/dark-mode/unsuccessfulLoginPageDarkMode.png) |
+
+---
 
 ## 👨‍💻 Auteur
 
-**Youssef Lazzouzi**
- 
-Étudiant - SMI-0211/23   
+**Youssef Lazzouzi**  
+Étudiant - SMI-0211/23  
 Filière : Licence Développement Informatique et Méthodes DevOps
 
 ---
 
 ## 📄 Licence
-
-Ce projet est un travail académique pour le module de Programmation Full Stack.
+Travail académique - Université Abdelmalek Essaâdi.
