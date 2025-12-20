@@ -14,15 +14,7 @@ export class ProductService {
 
   public getProducts(): Observable<Product[]> {
     return this.http.get<any[]>(`${this.baseUrl}/api/products`).pipe(
-      map(data => data.map(item => {
-        const p = new Product(item.productID);
-        p.productTitle = item.productTitle;
-        p.productPrice = item.productPrice;
-        p.productImage = item.productImage;
-        p.category = item.category;
-        p.productDescription = item.productDescription;
-        return p;
-      }))
+      map(data => data.map(item => Object.assign(new Product(item.productID), item)))
     );
   }
 }

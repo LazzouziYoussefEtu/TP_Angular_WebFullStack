@@ -31,32 +31,16 @@ export class HeaderComponent implements OnInit{
   ) { }
 
   ngOnInit() {
-    this.loginService.currentUser$.subscribe({
-      next: (user) => { this.user = user; }
-    });
+    this.loginService.currentUser$.subscribe(user => this.user = user);
 
     if (isPlatformBrowser(this.platformId)) {
       const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) {
-        this.isDarkTheme = savedTheme === 'dark';
-        if (this.isDarkTheme) {
-          this.document.body.classList.add('dark-theme');
-        } else {
-          this.document.body.classList.remove('dark-theme');
-        }
-      } else {
-        // Default is dark, which is already on body from index.html
-        this.isDarkTheme = true;
-      }
+      this.isDarkTheme = savedTheme ? savedTheme === 'dark' : true;
+      this.document.body.classList.toggle('dark-theme', this.isDarkTheme);
 
       const savedLang = localStorage.getItem('lang');
-      if (savedLang) {
-        this.currentLang = savedLang;
-        this.translate.use(savedLang);
-      } else {
-        this.currentLang = 'fr';
-        this.translate.use('fr');
-      }
+      this.currentLang = savedLang || 'fr';
+      this.translate.use(this.currentLang);
     }
   }
 

@@ -13,17 +13,12 @@ export class CartService {
   constructor() { }
 
   addToCart(product: Product) {
-    const item = new ShoppingCartItem(product);
-    this.cart.addItem(item);
+    this.cart.addItem(new ShoppingCartItem(product));
     this.productCount++;
     alert(`${product.productTitle} a été ajouté au panier !`);
   }
 
   removeFromCart(item: ShoppingCartItem) {
     this.cart.removeItem(item);
-  }
-
-  getCartItems() {
-    return this.cart.itemsProduct;
   }
 }
