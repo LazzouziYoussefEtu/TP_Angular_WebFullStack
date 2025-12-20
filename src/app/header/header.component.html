@@ -1,6 +1,6 @@
 <div class="container">
     <div class="left">
-      <img class="logo" src="/assets/images/angular-logo.svg" alt="Angular Logo" />
+      <img class="logo" [src]="isDarkTheme ? 'assets/images/angular_white.png' : 'assets/images/angular_gradient.png'" alt="Angular Logo" />
       <nav class="nav-links">
         <a routerLink="/home" routerLinkActive="active">{{ 'HEADER.HOME' | translate }}</a>
         <a routerLink="/catalog" routerLinkActive="active">{{ 'HEADER.CATALOG' | translate }}</a>
