@@ -11,7 +11,6 @@
 
 Application e-commerce avancée développée en **Angular 21** intégrant un backend **Express.js**, un support complet du **mode sombre**, une internationalisation (**i18n**) et une architecture réactive basée sur les **Observables**.
 
-**Dernière mise à jour :** 2025-12-20. Intégration API réelle, Dark Mode unifié, support multilingue (FR/EN) et nettoyage complet du code.
 
 ---
 
