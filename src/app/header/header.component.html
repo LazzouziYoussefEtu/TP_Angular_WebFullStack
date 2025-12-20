@@ -2,26 +2,33 @@
     <div class="left">
       <img class="logo" src="/assets/images/angular-logo.svg" alt="Angular Logo" />
       <nav class="nav-links">
-        <a routerLink="/home" routerLinkActive="active">Home</a>
-        <a routerLink="/catalog" routerLinkActive="active">Catalog</a>
-        <a routerLink="/cart" routerLinkActive="active" class="cart">Cart</a>
+        <a routerLink="/home" routerLinkActive="active">{{ 'HEADER.HOME' | translate }}</a>
+        <a routerLink="/catalog" routerLinkActive="active">{{ 'HEADER.CATALOG' | translate }}</a>
+        <a routerLink="/cart" routerLinkActive="active" class="cart">
+          {{ 'HEADER.CART' | translate }}
+          <div class="cartCount" *ngIf="productCount > 0">{{ productCount }}</div>
+        </a>
       </nav>
     </div>
 
     <div class="right">
-      <button class="theme-toggle" (click)="toggleTheme()" aria-label="Toggle Dark Mode">
+      <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="'HEADER.TOGGLE_THEME' | translate">
         {{ isDarkTheme ? '☀️' : '🌙' }}
       </button>
 
+      <button class="lang-toggle" (click)="switchLanguage()" [attr.aria-label]="'HEADER.TOGGLE_LANG' | translate">
+        {{ currentLang === 'en' ? 'FR' : 'EN' }}
+      </button>
+
       <ng-container *ngIf="!user">
-        <a routerLink="/signin" routerLinkActive="active">Sign In</a>
-        <a href="#" class="cta">Register</a>
+        <a routerLink="/signin" routerLinkActive="active">{{ 'HEADER.SIGN_IN' | translate }}</a>
+        <a href="#" class="cta">{{ 'HEADER.REGISTER' | translate }}</a>
       </ng-container>
 
       <ng-container *ngIf="user">
         <img class="profile-img" src="/assets/icons/user-icon.svg" (click)="toggleSignOutMenu()" alt="profile" />
         <div class="sign-out" *ngIf="showSignOutMenu">
-          <button (click)="signOut()">Sign Out</button>
+          <button (click)="signOut()">{{ 'HEADER.SIGN_OUT' | translate }}</button>
         </div>
       </ng-container>
     </div>

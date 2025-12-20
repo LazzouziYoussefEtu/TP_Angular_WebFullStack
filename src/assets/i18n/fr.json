@@ -1,0 +1,26 @@
+{
+  "HEADER": {
+    "HOME": "Accueil",
+    "CATALOG": "Catalogue",
+    "CART": "Panier",
+    "SIGN_IN": "Se connecter",
+    "REGISTER": "S'inscrire",
+    "SIGN_OUT": "Déconnexion",
+    "TOGGLE_THEME": "Changer de thème",
+    "TOGGLE_LANG": "Changer de langue"
+  },
+  "HOME": {
+    "WELCOME": "Bienvenue sur TP4",
+    "DESCRIPTION": "Ceci est une application e-commerce simple construite avec Angular.",
+    "CTA": "Aller au catalogue"
+  },
+  "AUTH": {
+    "EMAIL": "Email",
+    "PASSWORD": "Mot de passe",
+    "SIGN_IN": "Se connecter",
+    "SIGNING_IN": "Connexion...",
+    "WELCOME_USER": "Bienvenue {{name}} !",
+    "ERROR_LOGIN": "Email ou mot de passe incorrect",
+    "INVALID_EMAIL": "Email invalide"
+  }
+}

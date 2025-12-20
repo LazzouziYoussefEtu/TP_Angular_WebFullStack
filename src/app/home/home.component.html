@@ -1,5 +1,7 @@
 <div class="home-container">
-  <h1>Welcome to My Shop</h1>
-  <p>Find the best products and manage your cart.</p>
-  <a routerLink="/catalog" class="cta">Browse Catalog</a>
+  <img class="logo-home" src="/assets/images/angular-logo.svg" alt="Angular Logo" />
+  <h1>{{ 'HOME.WELCOME' | translate }}</h1>
+  <p>{{ 'HOME.DESCRIPTION' | translate }}</p>
+  
+  <a routerLink="/catalog" class="cta">{{ 'HOME.CTA' | translate }}</a>
 </div>

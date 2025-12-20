@@ -4,11 +4,12 @@ import { LoginService } from '../services/login.service';
 import { CartService } from '../services/cart.service';
 import { User } from '../models/User';
 import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule],
+  imports: [RouterLink, RouterLinkActive, CommonModule, TranslateModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit{
   user: User | null = null;
   showSignOutMenu: boolean = false;
   isDarkTheme: boolean = false;
+  currentLang: string = 'en';
 
   today: number = Date.now();
   productCount: number = this.cartService.productCount;
@@ -28,7 +30,8 @@ export class HeaderComponent implements OnInit{
     private loginService: LoginService, 
     private cartService: CartService,
     @Inject(DOCUMENT) private document: Document,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -37,10 +40,20 @@ export class HeaderComponent implements OnInit{
     });
 
     if (isPlatformBrowser(this.platformId)) {
+      // Theme
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'dark') {
         this.isDarkTheme = true;
         this.document.body.classList.add('dark-theme');
+      }
+
+      // Language
+      const savedLang = localStorage.getItem('lang');
+      if (savedLang) {
+        this.currentLang = savedLang;
+        this.translate.use(savedLang);
+      } else {
+        this.currentLang = this.translate.getDefaultLang() || 'en';
       }
     }
   }
@@ -57,6 +70,14 @@ export class HeaderComponent implements OnInit{
       if (isPlatformBrowser(this.platformId)) {
         localStorage.setItem('theme', 'light');
       }
+    }
+  }
+
+  switchLanguage() {
+    this.currentLang = this.currentLang === 'en' ? 'fr' : 'en';
+    this.translate.use(this.currentLang);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('lang', this.currentLang);
     }
   }
 
