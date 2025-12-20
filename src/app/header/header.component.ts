@@ -16,8 +16,8 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
 export class HeaderComponent implements OnInit{
   user: User | null = null;
   showSignOutMenu: boolean = false;
-  isDarkTheme: boolean = false;
-  currentLang: string = 'en';
+  isDarkTheme: boolean = true;
+  currentLang: string = 'fr';
 
   today: number = Date.now();
   productCount: number = this.cartService.productCount;
@@ -37,9 +37,16 @@ export class HeaderComponent implements OnInit{
 
     if (isPlatformBrowser(this.platformId)) {
       const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
+      if (savedTheme) {
+        this.isDarkTheme = savedTheme === 'dark';
+        if (this.isDarkTheme) {
+          this.document.body.classList.add('dark-theme');
+        } else {
+          this.document.body.classList.remove('dark-theme');
+        }
+      } else {
+        // Default is dark, which is already on body from index.html
         this.isDarkTheme = true;
-        this.document.body.classList.add('dark-theme');
       }
 
       const savedLang = localStorage.getItem('lang');
@@ -47,7 +54,8 @@ export class HeaderComponent implements OnInit{
         this.currentLang = savedLang;
         this.translate.use(savedLang);
       } else {
-        this.currentLang = this.translate.getDefaultLang() || 'en';
+        this.currentLang = 'fr';
+        this.translate.use('fr');
       }
     }
   }

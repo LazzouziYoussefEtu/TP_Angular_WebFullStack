@@ -15,7 +15,7 @@ export class AppComponent {
   title = 'my-shop';
 
   constructor(private translate: TranslateService) {
-    translate.setDefaultLang('en');
-    translate.use('en');
+    translate.setDefaultLang('fr');
+    translate.use('fr');
   }
 }
