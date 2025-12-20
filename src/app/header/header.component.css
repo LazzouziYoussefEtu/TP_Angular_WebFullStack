@@ -75,22 +75,24 @@
 .theme-toggle, .lang-toggle {
   background: none;
   border: none;
-  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   padding: 5px;
   border-radius: 50%;
-  transition: background 0.3s;
-  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
+  color: var(--icon-color);
 }
 
 .theme-toggle:hover, .lang-toggle:hover {
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(128,128,128,0.1);
 }
 
 .lang-toggle {
   font-size: 0.9rem;
   font-weight: bold;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--icon-color);
   border-radius: 4px;
   padding: 4px 8px;
 }
@@ -100,21 +102,12 @@
   width: 40px;
   border-radius: 50%;
   cursor: pointer;
+  color: var(--icon-color);
 }
 
-/* Styling for the new user icon */
+/* Force SVG icon color inversion */
 .profile-img[src$=".svg"] {
-  height: 40px;
-  width: 40px;
-  border-radius: 0; /* SVGs might not need border-radius, or can be styled differently */
-  cursor: pointer;
-  padding: 5px; /* Adjust as needed */
-  background-color: transparent; 
-  filter: invert(var(--invert-icon, 0)); /* Optional: to invert icon color in dark mode if needed */
-}
-
-body.dark-theme .profile-img[src$=".svg"] {
-   filter: invert(1);
+  filter: var(--icon-filter);
 }
 
 .sign-out {
