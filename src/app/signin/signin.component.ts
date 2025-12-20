@@ -13,32 +13,37 @@ import { IUserCredentials } from '../models/User';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent {
-  message: string | null = null;
-  signInError: boolean = false;
   credentials: IUserCredentials = {
     email: '',
     password: ''
   };
 
-  constructor(private loginService: LoginService, private router: Router) {} // Inject LoginService
+  message: string | null = null;
+  isError: boolean = false;
+  isLoading: boolean = false;
+
+  constructor(private loginService: LoginService, private router: Router) {} 
 
   close() {
     this.router.navigate(['/home']);
   }
 
   signIn() {
-    this.signInError = false;
-    this.message = 'Signing in...';
-    this.loginService.login(this.credentials).subscribe({ // Call loginService.login
-      next: () => {
-        this.message = null;
-        this.router.navigate(['/catalog']);
-        console.log('Sign-in successful');
+    this.isLoading = true;
+    this.isError = false;
+    this.message = 'Connexion en cours...';
+
+    this.loginService.login(this.credentials).subscribe({
+      next: (user) => {
+        this.isLoading = false;
+        this.message = `Bienvenue ${user.firstName} !`;
+        setTimeout(() => this.router.navigate(['/catalog']), 1000);
       },
-      error: (error) => {
-        this.message = null;
-        this.signInError = true;
-        console.error('Login failed:', error); // Log the error for debugging
+      error: (err: Error) => {
+        this.isLoading = false;
+        this.isError = true;
+        this.message = err.message; 
+        console.error('Échec:', err);
       }
     });
   }

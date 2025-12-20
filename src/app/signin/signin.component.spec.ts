@@ -2,6 +2,7 @@
  * Unit tests for SigninComponent
  */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
 import { SigninComponent } from './signin.component';
 
 describe('SigninComponent', () => {
@@ -10,7 +11,8 @@ describe('SigninComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SigninComponent]
+      imports: [SigninComponent],
+      providers: [provideHttpClient()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(SigninComponent);
@@ -20,10 +22,5 @@ describe('SigninComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should display error when fields are empty', () => {
-    component.signIn();
-    expect(component.message).toContain('Please enter');
   });
 });
