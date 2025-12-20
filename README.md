@@ -112,22 +112,34 @@ L'application est disponible sur **http://localhost:4200**.
 
 ---
 
-## 📸 Captures d'écran
+## 📸 Captures d'écran & Explications Techniques
 
 ### ☀️ Mode Clair (Light Mode)
 Organisé dans le dossier `screenshots/light-mode/`
 
-| Accueil | Catalogue |
-| :---: | :---: |
-| ![Home Light](screenshots/light-mode/homePageLightMode.png) | ![Catalog Light](screenshots/light-mode/catalogPageLightMode.png) |
+#### 🏠 Accueil & Identité Visuelle
+| Accueil | Code de changement de Logo |
+| :---: | :--- |
+| ![Home Light](screenshots/light-mode/homePageLightMode.png) | **Logos Dynamiques :** Utilisation de l'attribut `[src]` lié à la variable `isDarkTheme`. <br> ```html <img [src]="isDarkTheme ? '...white.png' : '...gradient.png'"> ``` |
 
+#### 📦 Gestion du Catalogue
+| Catalogue | Internationalisation (i18n) |
+| :---: | :--- |
+| ![Catalog Light](screenshots/light-mode/catalogPageLightMode.png) | **Pipe Translate :** Traduction à la volée des titres et des catégories. <br> ```html <th>{{ 'CATALOG.TABLE.NAME' | translate }}</th> <td>{{ 'CATEGORIES.' + p.category | translate }}</td> ``` |
+
+#### 🔍 Détails & 🛒 Panier
 | Détails Produit | Panier |
 | :---: | :---: |
 | ![Details Light](screenshots/light-mode/productDetailsPageLightMode.png) | ![Cart Light](screenshots/light-mode/CartPageLightMode.png) |
 
-| Connexion Réussie |
-| :---: |
-| ![Login Success](screenshots/light-mode/successfulLoginPageLightMode.png) |
+**Logique du Panier :**
+- **Badges dynamiques :** Génération de points colorés via une boucle `@for` sur la quantité.
+- **Service API :** Les produits sont récupérés de manière asynchrone via `ProductService`.
+
+#### 🔐 Authentification
+| Connexion Réussie | Logique de Connexion |
+| :---: | :--- |
+| ![Login Success](screenshots/light-mode/successfulLoginPageLightMode.png) | **API POST :** Envoi des credentials au serveur Express et réception de l'objet User. <br> ```typescript this.loginService.login(creds).subscribe(...) ``` |
 
 ### 🌙 Mode Sombre (Dark Mode)
 Organisé dans le dossier `screenshots/dark-mode/`
@@ -136,13 +148,24 @@ Organisé dans le dossier `screenshots/dark-mode/`
 | :---: | :---: |
 | ![Home Dark](screenshots/dark-mode/homePageDarkMode.png) | ![Catalog Dark](screenshots/dark-mode/catalogPageDarkMode.png) |
 
+#### 🎨 Implémentation du Thème
+Le passage au mode sombre est géré par une classe globale `.dark-theme` sur le `body`, pilotée par des variables CSS natives :
+```css
+body.dark-theme {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --icon-color: #fff; /* Inversion automatique des icônes SVG */
+}
+```
+
 | Détails Produit | Panier |
 | :---: | :---: |
 | ![Details Dark](screenshots/dark-mode/productDetailsPageDarkMode.png) | ![Cart Dark](screenshots/dark-mode/CartPagedarkMode.png) |
 
-| Erreur Connexion |
-| :---: |
-| ![Login Error](screenshots/dark-mode/unsuccessfulLoginPageDarkMode.png) |
+#### ⚠️ Gestion des Erreurs
+| Erreur Connexion | Description |
+| :---: | :--- |
+| ![Login Error](screenshots/dark-mode/unsuccessfulLoginPageDarkMode.png) | **Feedback Utilisateur :** Messages d'erreur traduits et stylisés avec une variable `--btn-danger-bg`. |
 
 ---
 
