@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
- // <--- Toujours importer ça
 import { CartService } from '../services/cart.service';
 import { ShoppingCartItem } from '../models/ShoppingCartItem';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-cart',
-    imports: [], // <--- On l'ajoute ici aussi
+    imports: [TranslateModule, CommonModule],
     templateUrl: './cart.component.html',
     styleUrls: ['./cart.component.css']
 })
@@ -17,7 +18,10 @@ export class CartComponent implements OnInit {
     return this.cartService.cart.itemsProduct;
   }
 
-  constructor(private cartService: CartService) { }
+  constructor(
+    private cartService: CartService,
+    private translate: TranslateService
+  ) { }
 
   // A small palette to cycle through for quantity badges
   public qtyColors: string[] = ['#28a745', '#007bff', '#ffc107', '#fd7e14', '#6f42c1', '#20c997', '#e83e8c'];
@@ -35,9 +39,9 @@ export class CartComponent implements OnInit {
 
   buy() {
     if (this.cartItems.length > 0) {
-      alert("Achat réussi !");
+      alert(this.translate.instant('CART.PURCHASE_SUCCESS'));
     } else {
-      alert("Votre panier est vide !");
+      alert(this.translate.instant('CART.PURCHASE_EMPTY'));
     }
   }
   removeproductfromcart(item: ShoppingCartItem) {

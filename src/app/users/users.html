@@ -1,24 +1,24 @@
-<h1>User Management</h1>
+<h1>{{ 'USERS.TITLE' | translate }}</h1>
 <div>
 
-    <label for="addUser">Add User : </label>
+    <label for="addUser">{{ 'USERS.ADD_USER' | translate }} : </label>
     <input type="text" id="addUser" [(ngModel)]="currentUser" (keyup.enter)="addUserAction()">
-    <button (click)="addUserAction()">Add</button>
+    <button (click)="addUserAction()">{{ 'USERS.ADD_BTN' | translate }}</button>
 </div>
 
 <br>
 <div>
-    <label for="deleteUser">Delete Last User  : </label>
-    <button (click)="deleteLastUserAction()">Delete</button>
+    <label for="deleteUser">{{ 'USERS.DELETE_LAST' | translate }}  : </label>
+    <button (click)="deleteLastUserAction()">{{ 'USERS.DELETE_BTN' | translate }}</button>
 </div>
-<h1>Users List</h1>
+<h1>{{ 'USERS.LIST_TITLE' | translate }}</h1>
 <br >
 <div>
     <table>
         <tr *ngFor="let user of users; let i = index">
             <td>{{ i + 1 }}</td>
             <td>{{ user }}</td>
-            <td><button (click)="deleteUserByName(user)">Delete</button></td>
+            <td><button (click)="deleteUserByName(user)">{{ 'USERS.DELETE_BTN' | translate }}</button></td>
         </tr>
     </table>
 </div>

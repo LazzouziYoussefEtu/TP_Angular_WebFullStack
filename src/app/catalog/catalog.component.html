@@ -20,18 +20,18 @@
   </table> -->
 
   <div class="catalog-container">
-    <h2>Catalogue Produits</h2>
+    <h2>{{ 'CATALOG.TITLE' | translate }}</h2>
 
     <div class="filters-container">
       <input
         type="text"
         [(ngModel)]="searchTerm"
-        placeholder="🔍 Rechercher..."
+        [placeholder]="'CATALOG.SEARCH_PLACEHOLDER' | translate"
         class="search-input"
         />
 
       <select [(ngModel)]="selectedCategory" class="category-select">
-        <option value="">Toutes les catégories</option>
+        <option value="">{{ 'CATALOG.ALL_CATEGORIES' | translate }}</option>
         @for (cat of categories; track cat) {
           <option [value]="cat">{{ cat }}</option>
         }
@@ -42,10 +42,10 @@
       <table class="product-table">
         <thead>
           <tr>
-            <th>Image</th>
-            <th>Nom du produit</th>
-            <th>Catégorie</th>
-            <th>Prix</th>
+            <th>{{ 'CATALOG.TABLE.IMAGE' | translate }}</th>
+            <th>{{ 'CATALOG.TABLE.NAME' | translate }}</th>
+            <th>{{ 'CATALOG.TABLE.CATEGORY' | translate }}</th>
+            <th>{{ 'CATALOG.TABLE.PRICE' | translate }}</th>
           </tr>
         </thead>
         <tbody>
@@ -67,7 +67,7 @@
           @if (filteredProducts.length === 0) {
             <tr>
               <td colspan="4" style="text-align: center; padding: 20px;">
-                Aucun produit trouvé.
+                {{ 'CATALOG.NO_PRODUCTS' | translate }}
               </td>
             </tr>
           }

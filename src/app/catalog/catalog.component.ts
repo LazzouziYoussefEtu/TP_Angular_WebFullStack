@@ -5,10 +5,12 @@ import { Product } from '../models/Product';
 import { CartService } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-catalog',
-    imports: [FormsModule, ProductDetailsComponent],
+    imports: [FormsModule, ProductDetailsComponent, TranslateModule, CommonModule],
     templateUrl: './catalog.component.html',
     styleUrls: ['./catalog.component.css']
 })

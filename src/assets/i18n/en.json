@@ -14,6 +14,49 @@
     "DESCRIPTION": "This is a simple e-commerce application built with Angular.",
     "CTA": "Go to Catalog"
   },
+  "CATALOG": {
+    "TITLE": "Product Catalog",
+    "SEARCH_PLACEHOLDER": "🔍 Search...",
+    "ALL_CATEGORIES": "All Categories",
+    "TABLE": {
+      "IMAGE": "Image",
+      "NAME": "Product Name",
+      "CATEGORY": "Category",
+      "PRICE": "Price"
+    },
+    "NO_PRODUCTS": "No products found."
+  },
+  "CART": {
+    "TITLE": "Your Cart 🛒",
+    "EMPTY_MSG": "Your cart is empty at the moment.",
+    "BACK_LINK": "Back to catalog",
+    "TABLE": {
+      "IMAGE": "Image",
+      "PRODUCT": "Product",
+      "QUANTITY": "Quantity",
+      "UNIT_PRICE": "Unit Price",
+      "ACTION": "Action"
+    },
+    "REMOVE_BTN": "Remove 🗑️",
+    "CLEAR_BTN": "Clear Cart 🧹",
+    "CONFIRM_BTN": "Confirm Order ✅",
+    "UNIT": "Unit",
+    "PURCHASE_SUCCESS": "Purchase successful!",
+    "PURCHASE_EMPTY": "Your cart is empty!"
+  },
+  "PRODUCT_DETAILS": {
+    "REF": "Reference",
+    "QUANTITY": "Quantity",
+    "ADD_TO_CART": "Add to Cart"
+  },
+  "USERS": {
+    "TITLE": "User Management",
+    "ADD_USER": "Add User",
+    "ADD_BTN": "Add",
+    "DELETE_LAST": "Delete Last User",
+    "DELETE_BTN": "Delete",
+    "LIST_TITLE": "Users List"
+  },
   "AUTH": {
     "EMAIL": "Email",
     "PASSWORD": "Password",

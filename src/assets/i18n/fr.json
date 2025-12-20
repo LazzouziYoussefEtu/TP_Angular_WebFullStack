@@ -14,6 +14,49 @@
     "DESCRIPTION": "Ceci est une application e-commerce simple construite avec Angular.",
     "CTA": "Aller au catalogue"
   },
+  "CATALOG": {
+    "TITLE": "Catalogue Produits",
+    "SEARCH_PLACEHOLDER": "🔍 Rechercher...",
+    "ALL_CATEGORIES": "Toutes les catégories",
+    "TABLE": {
+      "IMAGE": "Image",
+      "NAME": "Nom du produit",
+      "CATEGORY": "Catégorie",
+      "PRICE": "Prix"
+    },
+    "NO_PRODUCTS": "Aucun produit trouvé."
+  },
+  "CART": {
+    "TITLE": "Votre Panier 🛒",
+    "EMPTY_MSG": "Votre panier est vide pour le moment.",
+    "BACK_LINK": "Retourner au catalogue",
+    "TABLE": {
+      "IMAGE": "Image",
+      "PRODUCT": "Produit",
+      "QUANTITY": "Quantité",
+      "UNIT_PRICE": "Prix Unitaire",
+      "ACTION": "Action"
+    },
+    "REMOVE_BTN": "Retirer 🗑️",
+    "CLEAR_BTN": "Vider le panier 🧹",
+    "CONFIRM_BTN": "Confirmer la commande ✅",
+    "UNIT": "Unité",
+    "PURCHASE_SUCCESS": "Achat réussi !",
+    "PURCHASE_EMPTY": "Votre panier est vide !"
+  },
+  "PRODUCT_DETAILS": {
+    "REF": "Référence",
+    "QUANTITY": "Quantité",
+    "ADD_TO_CART": "Ajouter au panier"
+  },
+  "USERS": {
+    "TITLE": "Gestion des Utilisateurs",
+    "ADD_USER": "Ajouter un utilisateur",
+    "ADD_BTN": "Ajouter",
+    "DELETE_LAST": "Supprimer le dernier utilisateur",
+    "DELETE_BTN": "Supprimer",
+    "LIST_TITLE": "Liste des Utilisateurs"
+  },
   "AUTH": {
     "EMAIL": "Email",
     "PASSWORD": "Mot de passe",

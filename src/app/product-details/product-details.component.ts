@@ -3,10 +3,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../models/Product';
 import { CartService } from '../services/cart.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-product-details',
-    imports: [FormsModule],
+    imports: [FormsModule, TranslateModule],
     templateUrl: './product-details.component.html',
     styleUrls: ['./product-details.component.css']
 })

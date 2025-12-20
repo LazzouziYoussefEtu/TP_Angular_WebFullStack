@@ -33,12 +33,12 @@
 </div> -->
 
 <div class="cart-container">
-  <h2>Votre Panier 🛒</h2>
+  <h2>{{ 'CART.TITLE' | translate }}</h2>
 
   @if (cartItems.length === 0) {
     <div class="empty-cart-message">
-      <p>Votre panier est vide pour le moment.</p>
-      <a routerLink="/catalog" class="back-link">Retourner au catalogue</a>
+      <p>{{ 'CART.EMPTY_MSG' | translate }}</p>
+      <a routerLink="/catalog" class="back-link">{{ 'CART.BACK_LINK' | translate }}</a>
     </div>
   }
 
@@ -47,11 +47,11 @@
       <table class="cart-table">
         <thead>
           <tr>
-            <th>Image</th>
-            <th>Produit</th>
-            <th>Quantité</th>
-            <th>Prix Unitaire</th>
-            <th>Action</th>
+            <th>{{ 'CART.TABLE.IMAGE' | translate }}</th>
+            <th>{{ 'CART.TABLE.PRODUCT' | translate }}</th>
+            <th>{{ 'CART.TABLE.QUANTITY' | translate }}</th>
+            <th>{{ 'CART.TABLE.UNIT_PRICE' | translate }}</th>
+            <th>{{ 'CART.TABLE.ACTION' | translate }}</th>
           </tr>
         </thead>
         <tbody>
@@ -64,7 +64,7 @@
               <td style="font-weight: bold;">
                 <div class="qty-badges">
                   @for (i of range(item.quantity); track i) {
-                    <span class="qty-dot" [style.backgroundColor]="getColor(i)" [title]="'Unit ' + (i+1)"></span>
+                    <span class="qty-dot" [style.backgroundColor]="getColor(i)" [title]="('CART.UNIT' | translate) + ' ' + (i+1)"></span>
                   }
                   <span class="qty-label">x {{ item.quantity }}</span>
                 </div>
@@ -77,7 +77,7 @@
               <td class="product-price">{{ item.itemProduct.productPrice }}</td>
               <td>
                 <button (click)="removeproductfromcart(item)" class="delete-btn">
-                  Retirer 🗑️
+                  {{ 'CART.REMOVE_BTN' | translate }}
                 </button>
               </td>
             </tr>
@@ -87,9 +87,9 @@
       <div class="cart-actions">
         @if (cartItems.length > 1) {
           <div>
-            <button (click)="clearCart()" class="clear-btn">Vider le panier 🧹</button></div>
+            <button (click)="clearCart()" class="clear-btn">{{ 'CART.CLEAR_BTN' | translate }}</button></div>
           }
-          <button (click)="buy()" class="buy-btn">Confirmer la commande ✅</button>
+          <button (click)="buy()" class="buy-btn">{{ 'CART.CONFIRM_BTN' | translate }}</button>
         </div>
       </div>
     }

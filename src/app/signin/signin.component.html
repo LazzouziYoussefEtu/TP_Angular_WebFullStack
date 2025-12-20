@@ -2,21 +2,21 @@
   <div class="modal">
     <button class="close" aria-label="Close" (click)="close()">✕</button>
     <div class="body">
-      <h2>Sign In</h2>
+      <h2>{{ 'AUTH.SIGN_IN' | translate }}</h2>
       <form #signInForm="ngForm" (ngSubmit)="signIn()" id="loginForm">
         <label>
-          Email
+          {{ 'AUTH.EMAIL' | translate }}
           <input required email #email="ngModel" type="email" [(ngModel)]="credentials.email" name="email" />
-          <span class="error-hint" *ngIf="email.invalid && email.touched">Email invalide</span>
+          <span class="error-hint" *ngIf="email.invalid && email.touched">{{ 'AUTH.INVALID_EMAIL' | translate }}</span>
         </label>
         <label>
-          Password
+          {{ 'AUTH.PASSWORD' | translate }}
           <input required minlength="4" type="password" [(ngModel)]="credentials.password" name="password" /> </label>
       </form>
     </div>
     <div class="bottom-bar">
       <button class="submit" type="submit" form="loginForm" *ngIf="signInForm?.valid" [disabled]="isLoading">
-        {{ isLoading ? 'Signing in...' : 'Sign In' }}
+        {{ isLoading ? ('AUTH.SIGNING_IN' | translate) : ('AUTH.SIGN_IN' | translate) }}
       </button>
     </div>
     <p class="message" *ngIf="message" [ngClass]="{'error': isError}">
