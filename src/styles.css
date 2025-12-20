@@ -49,6 +49,7 @@
   /* Misc */
   --shadow-color: rgba(0, 0, 0, 0.1);
   --invert-icon: 0;
+  --icon-color: #000;
 }
 
 body.dark-theme {
@@ -100,6 +101,7 @@ body.dark-theme {
   /* Misc */
   --shadow-color: rgba(0, 0, 0, 0.5);
   --invert-icon: 1;
+  --icon-color: #fff;
 }
 
 body {
