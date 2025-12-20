@@ -26,6 +26,17 @@
     },
     "NO_PRODUCTS": "Aucun produit trouvé."
   },
+  "CATEGORIES": {
+    "TABLETS": "Tablettes",
+    "SMARTPHONES": "Smartphones",
+    "TELEVISIONS": "Téléviseurs",
+    "COMPUTERS": "Ordinateurs",
+    "AUDIO": "Audio",
+    "WEARABLES": "Wearables",
+    "BOOKS": "Livres",
+    "PHOTO": "Photo",
+    "PRINTERS": "Imprimantes"
+  },
   "CART": {
     "TITLE": "Votre Panier 🛒",
     "EMPTY_MSG": "Votre panier est vide pour le moment.",

@@ -26,6 +26,17 @@
     },
     "NO_PRODUCTS": "No products found."
   },
+  "CATEGORIES": {
+    "TABLETS": "Tablets",
+    "SMARTPHONES": "Smartphones",
+    "TELEVISIONS": "Televisions",
+    "COMPUTERS": "Computers",
+    "AUDIO": "Audio",
+    "WEARABLES": "Wearables",
+    "BOOKS": "Books",
+    "PHOTO": "Photo",
+    "PRINTERS": "Printers"
+  },
   "CART": {
     "TITLE": "Your Cart 🛒",
     "EMPTY_MSG": "Your cart is empty at the moment.",

@@ -40,9 +40,11 @@ export class CatalogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.products = this.productService.getProducts();
-    this.filteredProducts = this.products;
-    this.categories = [...new Set(this.products.map(p => p.category))];
+    this.productService.getProducts().subscribe(products => {
+      this.products = products;
+      this.filteredProducts = this.products;
+      this.categories = [...new Set(this.products.map(p => p.category))];
+    });
   }
 
   applyFilters() {

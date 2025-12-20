@@ -9,40 +9,39 @@
       class="search-input"
     />
 
-    <select [(ngModel)]="selectedCategory" class="category-select">
-      <option value="">{{ 'CATALOG.ALL_CATEGORIES' | translate }}</option>
-      @for (cat of categories; track cat) {
-        <option [value]="cat">{{ cat }}</option>
-      }
-    </select>
-  </div>
-
-  <div class="table-responsive">
-    <table class="product-table">
-      <thead>
-        <tr>
-          <th>{{ 'CATALOG.TABLE.IMAGE' | translate }}</th>
-          <th>{{ 'CATALOG.TABLE.NAME' | translate }}</th>
-          <th>{{ 'CATALOG.TABLE.CATEGORY' | translate }}</th>
-          <th>{{ 'CATALOG.TABLE.PRICE' | translate }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (p of filteredProducts; track p) {
-          <tr>
-            <td>
-              <img [src]="p.imageUrl()" [alt]="p.productTitle" class="thumb-img">
-            </td>
-            <td class="product-name" (click)="openProductDetails(p)" style="cursor: pointer;">
-              {{ p.productTitle }}
-            </td>
-            <td>
-              <span class="category-badge">{{ p.category }}</span>
-            </td>
-            <td class="product-price">{{ p.productPrice }}</td>
-          </tr>
-        }
-
+          <select [(ngModel)]="selectedCategory" class="category-select">
+            <option value="">{{ 'CATALOG.ALL_CATEGORIES' | translate }}</option>
+            @for (cat of categories; track cat) {
+              <option [value]="cat">{{ 'CATEGORIES.' + cat | translate }}</option>
+            }
+          </select>
+        </div>
+    
+        <div class="table-responsive">
+          <table class="product-table">
+            <thead>
+              <tr>
+                <th>{{ 'CATALOG.TABLE.IMAGE' | translate }}</th>
+                <th>{{ 'CATALOG.TABLE.NAME' | translate }}</th>
+                <th>{{ 'CATALOG.TABLE.CATEGORY' | translate }}</th>
+                <th>{{ 'CATALOG.TABLE.PRICE' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (p of filteredProducts; track p) {
+                <tr>
+                  <td>
+                    <img [src]="p.imageUrl()" [alt]="p.productTitle" class="thumb-img">
+                  </td>
+                  <td class="product-name" (click)="openProductDetails(p)" style="cursor: pointer;">
+                    {{ p.productTitle }}
+                  </td>
+                  <td>
+                    <span class="category-badge">{{ 'CATEGORIES.' + p.category | translate }}</span>
+                  </td>
+                  <td class="product-price">{{ p.productPrice }}</td>
+                </tr>
+              }
         @if (filteredProducts.length === 0) {
           <tr>
             <td colspan="4" style="text-align: center; padding: 20px;">
