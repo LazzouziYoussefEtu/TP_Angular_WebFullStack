@@ -1,10 +1,5 @@
-/**
- * Product model
- * Represents a product in the catalog with basic fields used by components and services.
- */
 export class Product {
     private _productTitle!: String;
-
     public get productTitle(): String { return this._productTitle; }
     public set productTitle(value: String) { this._productTitle = value; }
 
@@ -31,8 +26,9 @@ export class Product {
     constructor(readonly productID: String){}
     
     public printProduct(): String{
-    return "productID:" +this.productID +", productTitle: "+this.productTitle + ", productPrice: " + this.productPrice + ", description: " + this.productDescription
+        return "productID:" +this.productID +", productTitle: "+this.productTitle + ", productPrice: " + this.productPrice + ", description: " + this.productDescription
     }
+
     public imageUrl(): String{
         return "assets/images/" + this.productImage;
     }

@@ -1,21 +1,16 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-
 import { FormsModule } from '@angular/forms';
 import { Product } from '../models/Product';
 import { CartService } from '../services/cart.service';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-    selector: 'app-product-details',
-    imports: [FormsModule, TranslateModule],
-    templateUrl: './product-details.component.html',
-    styleUrls: ['./product-details.component.css']
+  selector: 'app-product-details',
+  imports: [FormsModule, TranslateModule],
+  templateUrl: './product-details.component.html',
+  styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent {
-  /**
-   * ProductDetailsComponent
-   * Shows a product modal allowing the user to choose a quantity and add items to the cart.
-   */
   @Input() product: Product | null = null;
   @Output() close = new EventEmitter<void>();
 
@@ -32,7 +27,7 @@ export class ProductDetailsComponent {
       for (let i = 0; i < this.quantity; i++) {
         this.cartService.addToCart(this.product);
       }
-      this.quantity = 1; // reset after adding
+      this.quantity = 1;
     }
   }
 }

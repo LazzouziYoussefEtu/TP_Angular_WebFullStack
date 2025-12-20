@@ -4,6 +4,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { SigninComponent } from './signin.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('SigninComponent', () => {
   let component: SigninComponent;
@@ -11,7 +12,7 @@ describe('SigninComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SigninComponent],
+      imports: [SigninComponent, TranslateModule.forRoot()],
       providers: [provideHttpClient()]
     }).compileComponents();
 

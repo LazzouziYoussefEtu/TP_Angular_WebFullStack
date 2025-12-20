@@ -49,11 +49,9 @@ export class SigninComponent {
       error: (err: Error) => {
         this.isLoading = false;
         this.isError = true;
-        // The error message from login service might already be translated or needs to be
         this.message = err.message; 
-        console.error('Échec:', err);
+        console.error('Login error:', err);
       }
     });
   }
 }
-

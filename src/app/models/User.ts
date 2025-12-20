@@ -1,9 +1,4 @@
-/**
- * User model
- * Represents an application user and exposes simple getters/setters used by the UI.
- */
 export class User {
-    // readonly permet d’empêcher les assignations en dehors du constructeur.
     private _firstName? : String | undefined= "";
     public get firstName(): String | undefined{
         return this._firstName;
@@ -11,6 +6,7 @@ export class User {
     public set firstName(value: String | undefined) {
         this._firstName = value;
     }
+
     private _email?: string | undefined;
     public get email(): string | undefined {
         return this._email;
@@ -26,6 +22,7 @@ export class User {
     public set password (value : string | undefined) {
         this._password = value;
     }
+
     private _lastName?: String | undefined = "";
     public get lastName(): String | undefined {
         return this._lastName;
@@ -50,9 +47,7 @@ export class User {
         this._userType = value;
     }
 
-    constructor(readonly userId: String){
-        
-    }
+    constructor(readonly userId: String){}
 
     public fullName(): String{
         return this.firstName + " " + this.lastName
@@ -67,24 +62,16 @@ enum userType {
     Admin = "Admin",
     Member = "Member",
     Guest = "Guest"
-  }
+}
 
 export interface IUserCredentials {
     email : string;
     password: string;
-}  
-
+}
+  
 export interface IUser {
     firstName: string;
     lastName: string;
     email: string;
     password: string;
   }
-
-  let user: User = new User("APLLLK");
-  user.lastName = "Youssef"
-  user.firstName = "Angular"
-  user.userType = userType.Admin
-  
-  console.log(user.greetUser())
-

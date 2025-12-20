@@ -1,12 +1,7 @@
-/**
- * Users component
- * Minimal example component that manages a list of user names.
- */
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-
 
 @Component({
   selector: 'app-users',
@@ -15,18 +10,18 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './users.css',
 })
 export class Users {
-  /** Current typed user name */
-  currentUser : string = "";
-  /** Simple array of user names */
-  users : Array<string> = new Array<string>;
+  currentUser: string = "";
+  users: Array<string> = [];
 
   addUserAction(): void {
     this.users.push(this.currentUser);
     this.currentUser = "";
   }
+
   deleteLastUserAction(): void {
     this.users.pop();
-    }
+  }
+
   deleteUserByName(name: string): void {
     this.users = this.users.filter(user => user !== name);
   }

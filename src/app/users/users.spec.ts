@@ -2,8 +2,8 @@
  * Unit tests for Users component
  */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Users } from './users';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('Users', () => {
   let component: Users;
@@ -11,7 +11,7 @@ describe('Users', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Users]
+      imports: [Users, TranslateModule.forRoot()]
     })
     .compileComponents();
 

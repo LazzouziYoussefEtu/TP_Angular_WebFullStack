@@ -13,10 +13,6 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-/**
- * HeaderComponent
- * Top navigation bar displayed across the app. Shows navigation links, cart count and user menu.
- */
 export class HeaderComponent implements OnInit{
   user: User | null = null;
   showSignOutMenu: boolean = false;
@@ -40,14 +36,12 @@ export class HeaderComponent implements OnInit{
     });
 
     if (isPlatformBrowser(this.platformId)) {
-      // Theme
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'dark') {
         this.isDarkTheme = true;
         this.document.body.classList.add('dark-theme');
       }
 
-      // Language
       const savedLang = localStorage.getItem('lang');
       if (savedLang) {
         this.currentLang = savedLang;
@@ -89,5 +83,4 @@ export class HeaderComponent implements OnInit{
     this.loginService.signOut();
     this.showSignOutMenu = false;
   }
-
 }
