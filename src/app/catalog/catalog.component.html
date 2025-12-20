@@ -17,41 +17,105 @@
           </select>
         </div>
     
-        <div class="table-responsive">
-          <table class="product-table">
-            <thead>
-              <tr>
-                <th>{{ 'CATALOG.TABLE.IMAGE' | translate }}</th>
-                <th>{{ 'CATALOG.TABLE.NAME' | translate }}</th>
-                <th>{{ 'CATALOG.TABLE.CATEGORY' | translate }}</th>
-                <th>{{ 'CATALOG.TABLE.PRICE' | translate }}</th>
-              </tr>
-            </thead>
-            <tbody>
-              @for (p of filteredProducts; track p) {
-                <tr>
-                  <td>
-                    <img [src]="p.imageUrl()" [alt]="p.productTitle" class="thumb-img">
-                  </td>
-                  <td class="product-name" (click)="openProductDetails(p)" style="cursor: pointer;">
-                    {{ p.productTitle }}
-                  </td>
-                  <td>
-                    <span class="category-badge">{{ 'CATEGORIES.' + p.category | translate }}</span>
-                  </td>
-                  <td class="product-price">{{ p.productPrice }}</td>
-                </tr>
-              }
-        @if (filteredProducts.length === 0) {
-          <tr>
-            <td colspan="4" style="text-align: center; padding: 20px;">
-              {{ 'CATALOG.NO_PRODUCTS' | translate }}
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
+            <div class="table-responsive">
+    
+              <table class="product-table">
+    
+                <thead>
+    
+                  <tr>
+    
+                    <th>{{ 'CATALOG.TABLE.IMAGE' | translate }}</th>
+    
+                    <th>{{ 'CATALOG.TABLE.NAME' | translate }}</th>
+    
+                    <th>{{ 'CATALOG.TABLE.CATEGORY' | translate }}</th>
+    
+                    <th>{{ 'CATALOG.TABLE.PRICE' | translate }}</th>
+    
+                  </tr>
+    
+                </thead>
+    
+                        <tbody>
+    
+                          @if (isLoading) {
+    
+                            <tr>
+    
+                              <td colspan="4" style="text-align: center; padding: 20px;">
+    
+                                {{ 'CATALOG.LOADING' | translate }}
+    
+                              </td>
+    
+                            </tr>
+    
+                          } @else if (errorMessage) {
+    
+                    <tr>
+    
+                      <td colspan="4" style="text-align: center; padding: 20px; color: red;">
+    
+                        {{ errorMessage }}
+    
+                      </td>
+    
+                    </tr>
+    
+                  } @else {
+    
+                    @for (p of filteredProducts; track p) {
+    
+                      <tr>
+    
+                        <td>
+    
+                          <img [src]="p.imageUrl()" [alt]="p.productTitle" class="thumb-img">
+    
+                        </td>
+    
+                        <td class="product-name" (click)="openProductDetails(p)" style="cursor: pointer;">
+    
+                          {{ p.productTitle }}
+    
+                        </td>
+    
+                        <td>
+    
+                          <span class="category-badge">{{ 'CATEGORIES.' + p.category | translate }}</span>
+    
+                        </td>
+    
+                        <td class="product-price">{{ p.productPrice }}</td>
+    
+                      </tr>
+    
+                    }
+    
+        
+    
+                    @if (filteredProducts.length === 0) {
+    
+                      <tr>
+    
+                        <td colspan="4" style="text-align: center; padding: 20px;">
+    
+                          {{ 'CATALOG.NO_PRODUCTS' | translate }}
+    
+                        </td>
+    
+                      </tr>
+    
+                    }
+    
+                  }
+    
+                </tbody>
+    
+              </table>
+    
+            </div>
 </div>
 
 @if (selectedProduct) {

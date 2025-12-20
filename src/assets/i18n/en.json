@@ -24,7 +24,9 @@
       "CATEGORY": "Category",
       "PRICE": "Price"
     },
-    "NO_PRODUCTS": "No products found."
+    "NO_PRODUCTS": "No products found.",
+    "LOADING": "Loading products...",
+    "ERROR_FETCH": "Could not load products. Please make sure the API server is running."
   },
   "CATEGORIES": {
     "TABLETS": "Tablets",

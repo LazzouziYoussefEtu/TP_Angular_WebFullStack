@@ -24,7 +24,9 @@
       "CATEGORY": "Catégorie",
       "PRICE": "Prix"
     },
-    "NO_PRODUCTS": "Aucun produit trouvé."
+    "NO_PRODUCTS": "Aucun produit trouvé.",
+    "LOADING": "Chargement des produits...",
+    "ERROR_FETCH": "Impossible de charger les produits. Assurez-vous que le serveur API est lancé."
   },
   "CATEGORIES": {
     "TABLETS": "Tablettes",

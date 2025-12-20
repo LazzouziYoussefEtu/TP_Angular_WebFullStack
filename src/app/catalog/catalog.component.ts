@@ -4,7 +4,7 @@ import { Product } from '../models/Product';
 import { CartService } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -17,6 +17,8 @@ export class CatalogComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   categories: String[] = [];
+  isLoading: boolean = true;
+  errorMessage: string | null = null;
 
   private _searchTerm: string = "";
   private _selectedCategory: string = "";
@@ -36,14 +38,24 @@ export class CatalogComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private productService: ProductService
+    private productService: ProductService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(products => {
-      this.products = products;
-      this.filteredProducts = this.products;
-      this.categories = [...new Set(this.products.map(p => p.category))];
+    this.isLoading = true;
+    this.productService.getProducts().subscribe({
+      next: (products) => {
+        this.products = products;
+        this.filteredProducts = this.products;
+        this.categories = [...new Set(this.products.map(p => p.category))];
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching products:', err);
+        this.errorMessage = this.translate.instant('CATALOG.ERROR_FETCH');
+        this.isLoading = false;
+      }
     });
   }
 
