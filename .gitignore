@@ -1,15 +1,15 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
-
 # Compiled output
 /dist
 /tmp
 /out-tsc
 /bazel-out
+/.angular/cache
 
 # Node
 /node_modules
 npm-debug.log
 yarn-error.log
+/connect.lock
 
 # IDEs and editors
 .idea/
@@ -19,30 +19,48 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
-
-# Visual Studio Code
-.vscode/*
+.history/
+.editorconfig
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+# Environment files and Secrets
+.env
+.env.*
+!.env.example
+*.env
+*.key
+*.pem
+*.cert
+*.crt
+*.p12
+*.pfx
+secrets.*
+credentials.*
+auth.json
+passwd
 
 # System files
 .DS_Store
 Thumbs.db
-node_modules/
 
-# Environment files
-GEMINI.md
-.vscode
-.editorconfig
+# Testing and Coverage
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+.sass-cache/
+.phpunit.result.cache
+.phpunit.cache/
+
+# Laravel specific (if not covered by general rules)
+/laravel-backend/vendor/
+/laravel-backend/public/storage
+/laravel-backend/storage/*.key
+/laravel-backend/storage/pail
+/laravel-backend/public/build
+/laravel-backend/public/hot
+

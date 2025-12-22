@@ -3,10 +3,11 @@ import { CartService } from '../services/cart.service';
 import { ShoppingCartItem } from '../models/ShoppingCartItem';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
+import { RangePipe } from '../pipes/range.pipe';
 
 @Component({
   selector: 'app-cart',
-  imports: [TranslateModule, CommonModule],
+  imports: [TranslateModule, CommonModule, RangePipe],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
@@ -21,10 +22,6 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private translate: TranslateService
   ) { }
-
-  range(n: number): number[] {
-    return Array.from({ length: Math.max(0, n) }, (_, i) => i);
-  }
 
   getColor(index: number): string {
     return this.qtyColors[index % this.qtyColors.length];

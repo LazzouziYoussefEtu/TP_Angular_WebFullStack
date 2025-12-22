@@ -9,7 +9,7 @@
 
 ## 📝 Description du Projet
 
-Application e-commerce avancée développée en **Angular 21** intégrant un backend **Express.js**, un support complet du **mode sombre**, une internationalisation (**i18n**) et une architecture réactive basée sur les **Observables**.
+Application e-commerce avancée développée en **Angular 21** intégrant un backend **Laravel 12**, un support complet du **mode sombre**, une internationalisation (**i18n**) et une architecture réactive basée sur les **Observables**.
 
 
 ---
@@ -29,7 +29,8 @@ Application e-commerce avancée développée en **Angular 21** intégrant un bac
 - **Persistance de la langue** préférée.
 
 ### 📡 Intégration API Réelle
-- **Migration des données** : Les produits ne sont plus statiques mais récupérés via un serveur API Node.js.
+- **Backend Laravel** : Les produits et l'authentification sont gérés par une API Laravel robuste.
+- **Gestion des Environnements** : Utilisation de `src/environments/environment.ts` pour centraliser les configurations (API URL, Langue par défaut, etc.).
 - **Authentification réelle** : Système de Sign-In via POST API avec gestion des erreurs et états de chargement.
 - **Gestion asynchrone** : Utilisation intensive de `HttpClient` et RxJS.
 
@@ -51,25 +52,29 @@ Application e-commerce avancée développée en **Angular 21** intégrant un bac
 ### Structure du Projet
 ```
 /
-├── api-server/                # Serveur Express.js (Port 3001)
-│   └── index.js               # Endpoints : /api/signin, /api/products
+├── laravel-backend/           # Backend Laravel 12 (Port 8000)
+│   ├── app/Http/Controllers/  # Contrôleurs (AuthController, ProductController, UserController)
+│   ├── routes/api.php         # Endpoints : /api/signin, /api/products, /api/users
+│   └── .env                   # Configuration backend
 │
-├── src/app/
-│   ├── models/                # Modèles de données (Product, User, Cart)
-│   ├── services/              # Services (LoginService, ProductService, CartService)
-│   ├── components/            # Composants Standalone
-│   ├── assets/
-│   │   ├── i18n/              # Fichiers de traduction (en.json, fr.json)
-│   │   ├── icons/             # Icônes SVG monocolores
-│   │   └── images/            # Assets graphiques (PNG logos)
-│   └── app.config.ts          # Config HttpClient (fetch) et TranslateModule
+├── src/
+│   ├── environments/          # Variables d'environnement Angular
+│   │   └── environment.ts     # Configuration partagée (apiUrl, defaultLang, etc.)
+│   ├── app/
+│   │   ├── models/            # Modèles de données (Product, User, Cart)
+│   │   ├── services/          # Services (LoginService, ProductService, UserService)
+│   │   ├── components/        # Composants Standalone
+│   │   ├── assets/
+│   │   │   ├── i18n/          # Fichiers de traduction (en.json, fr.json)
+│   │   │   ├── icons/         # Icônes SVG monocolores
+│   │   │   └── images/        # Assets graphiques (PNG logos)
+│   │   └── app.config.ts      # Config HttpClient et TranslateModule
 ```
 
 ### Technologies Utilisées
 - **Angular 21** (Standalone, Signals, Block control flow)
+- **Laravel 12** (Backend API, Eloquent ORM)
 - **@ngx-translate** (Internationalisation)
-- **Express.js 5.x** (Backend API & CORS)
-- **Node.js 25.x** (LTS compatible)
 - **RxJS** (Gestion des flux asynchrones)
 - **CSS Variables** (Thématisation dynamique)
 
@@ -78,36 +83,56 @@ Application e-commerce avancée développée en **Angular 21** intégrant un bac
 ## 🚀 Installation & Démarrage
 
 ### 1. Installation
+
+#### Frontend
 ```bash
-git clone https://github.com/LazzouziYoussefEtu/TP_Angular_WebFullStack.git
-cd TP_Angular_WebFullStack
-
-# Frontend
 npm install
+```
 
-# Backend
-cd api-server
-npm install
-cd ..
+#### Backend (Laravel)
+```bash
+cd laravel-backend
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
 ```
 
 ### 2. Lancer le Projet
-Il est impératif de lancer le serveur API pour que les produits et la connexion fonctionnent.
 
+#### Terminal 1 : Laravel Backend
 ```bash
-# Terminal 1 : API Server
-cd api-server && npm start
+cd laravel-backend
+php artisan serve
+```
+Le backend sera disponible sur **http://localhost:8000**.
 
-# Terminal 2 : Angular App
+#### Terminal 2 : Angular Frontend
+```bash
 npm start
 ```
 L'application est disponible sur **http://localhost:4200**.
 
 ---
 
+## ⚙️ Configuration des Environnements
+
+Le fichier `src/environments/environment.ts` contient les variables partagées :
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8000/api',
+  defaultLang: 'fr',
+  appTitle: 'my-shop',
+  i18nPath: './assets/i18n/'
+};
+```
+
+---
+
 ## 🔑 Identifiants de Test
-- **Email :** `youssef.lazzouzi@etu.uae.ac.ma`
-- **Mot de passe :** `password123`
+- **Email :** `test@example.com` (ou celui configuré dans les seeders Laravel)
+- **Mot de passe :** `password`
 
 ---
 
@@ -138,7 +163,7 @@ Organisé dans le dossier `screenshots/light-mode/`
 #### 🔐 Authentification
 | Connexion Réussie | Logique de Connexion |
 | :---: | :--- |
-| ![Login Success](screenshots/light-mode/successfulLoginPageLightMode.png) | **API POST :** Envoi des credentials au serveur Express et réception de l'objet User. <br> ```typescript this.loginService.login(creds).subscribe(...) ``` |
+| ![Login Success](screenshots/light-mode/successfulLoginPageLightMode.png) | **API POST :** Envoi des credentials au serveur Laravel et réception de l'objet User. <br> ```typescript this.loginService.login(creds).subscribe(...) ``` |
 
 ### 🌙 Mode Sombre (Dark Mode)
 Organisé dans le dossier `screenshots/dark-mode/`

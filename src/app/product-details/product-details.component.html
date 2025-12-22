@@ -4,8 +4,8 @@
       <button class="close" aria-label="Close" (click)="onClose()">✕</button>
       <div class="body">
         <div class="left">
-          @if (product.imageUrl()) {
-            <img [src]="product.imageUrl()" [alt]="product.productTitle" />
+          @if (product.productImage) {
+            <img [src]="product.productImage" [alt]="product.productTitle" />
           }
         </div>
         <div class="right">

@@ -4,6 +4,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader, TRANSLATE_HTTP_LOADER_CONFIG } from '@ngx-translate/http-loader';
+import { environment } from '../environments/environment';
 
 import { routes } from './app.routes';
 
@@ -27,7 +28,7 @@ export const appConfig: ApplicationConfig = {
     {
       provide: TRANSLATE_HTTP_LOADER_CONFIG,
       useValue: {
-        prefix: './assets/i18n/',
+        prefix: environment.i18nPath,
         suffix: '.json'
       }
     }

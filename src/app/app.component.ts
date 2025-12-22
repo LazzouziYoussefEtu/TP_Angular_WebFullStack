@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,10 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'my-shop';
+  title = environment.appTitle;
 
   constructor(private translate: TranslateService) {
-    translate.setDefaultLang('fr');
-    translate.use('fr');
+    translate.setDefaultLang(environment.defaultLang);
+    translate.use(environment.defaultLang);
   }
 }

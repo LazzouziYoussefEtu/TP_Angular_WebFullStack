@@ -17,7 +17,7 @@
     <table>
         <tr *ngFor="let user of users; let i = index">
             <td>{{ i + 1 }}</td>
-            <td>{{ user }}</td>
+            <td>{{ user.name }}</td>
             <td><button (click)="deleteUserByName(user)">{{ 'USERS.DELETE_BTN' | translate }}</button></td>
         </tr>
     </table>

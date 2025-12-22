@@ -24,13 +24,16 @@
           @for (item of cartItems; track item) {
             <tr>
               <td>
-                <img [src]="item.itemProduct.imageUrl()" [alt]="item.itemProduct.productTitle" class="thumb-img">
+                <img [src]="'assets/images/' + item.itemProduct.productImage" [alt]="item.itemProduct.productTitle" class="thumb-img" loading="lazy">
               </td>
               <td class="product-name">{{ item.itemProduct.productTitle }}</td>
               <td style="font-weight: bold;">
                 <div class="qty-badges">
-                  @for (i of range(item.quantity); track i) {
+                  @for (i of (item.quantity | range).slice(0, 10); track i) {
                     <span class="qty-dot" [style.backgroundColor]="getColor(i)" [title]="('CART.UNIT' | translate) + ' ' + (i+1)"></span>
+                  }
+                  @if (item.quantity > 10) {
+                    <span class="qty-more">+{{ item.quantity - 10 }}</span>
                   }
                   <span class="qty-label">x {{ item.quantity }}</span>
                 </div>

@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { tap, map, catchError } from 'rxjs/operators';
 import { User, IUserCredentials } from '../models/User';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 interface AuthResponse {
   message: string;
@@ -13,7 +14,7 @@ interface AuthResponse {
   providedIn: 'root'
 })
 export class LoginService {
-  private baseUrl: string = 'http://localhost:3001'
+  private apiUrl: string = `${environment.apiUrl}/signin`;
   private currentUserSubject = new BehaviorSubject<User | null>(null);
 
   public currentUser$ = this.currentUserSubject.asObservable();
@@ -21,7 +22,7 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   login(credentials: IUserCredentials): Observable<User> {
-    return this.http.post<AuthResponse>(`${this.baseUrl}/api/signin`, credentials).pipe(
+    return this.http.post<AuthResponse>(this.apiUrl, credentials).pipe(
       tap((response: AuthResponse) => {
         this.currentUserSubject.next(response.user);
       }),

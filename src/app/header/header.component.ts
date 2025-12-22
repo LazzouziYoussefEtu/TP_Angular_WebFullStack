@@ -5,6 +5,7 @@ import { CartService } from '../services/cart.service';
 import { User } from '../models/User';
 import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit{
   user: User | null = null;
   showSignOutMenu: boolean = false;
   isDarkTheme: boolean = true;
-  currentLang: string = 'fr';
+  currentLang: string = environment.defaultLang;
 
   today: number = Date.now();
   productCount: number = this.cartService.productCount;
@@ -39,7 +40,7 @@ export class HeaderComponent implements OnInit{
       this.document.body.classList.toggle('dark-theme', this.isDarkTheme);
 
       const savedLang = localStorage.getItem('lang');
-      this.currentLang = savedLang || 'fr';
+      this.currentLang = savedLang || environment.defaultLang;
       this.translate.use(this.currentLang);
     }
   }

@@ -9,5 +9,6 @@ export const routes: Routes = [
     { path: 'catalog', component: CatalogComponent },
     { path: 'cart', component: CartComponent },
     { path: 'signin', component: SigninComponent },
-    { path: '', redirectTo: '/home', pathMatch: 'full' }
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '**', redirectTo: '/home' }
 ];
