@@ -5,7 +5,7 @@
       <div class="body">
         <div class="left">
           @if (product.productImage) {
-            <img [src]="product.productImage" [alt]="product.productTitle" />
+            <img [src]="'assets/images/' + product.productImage" [alt]="product.productTitle" loading="lazy" />
           }
         </div>
         <div class="right">
